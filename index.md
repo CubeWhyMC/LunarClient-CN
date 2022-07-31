@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+## LC中文修复
 
-You can use the [editor on GitHub](https://github.com/chenmy1903/LunarClient/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+> 所有问题都在这里, 别没事就去私信, 我没空回, 如果新版本更新了我会在一天内同步的, 不要急
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## 系统要求
 
-### Markdown
+1. Windows 8及以上版本 (python 3.9已经不支持Windows 7)
+2. 64x架构处理器和系统
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## 如何安装
 
-```markdown
-Syntax highlighted code block
+### 第一步 下载
 
-# Header 1
-## Header 2
-### Header 3
+> 部分地区加速源没用
 
-- Bulleted
-- List
+下载: [加速源(中国推荐)](https://gh.chenmy1903.tk/chenmy1903/LunarClient/releases) [GitHub](https://github.com/chenmy1903/LunarClient/releases)
 
-1. Numbered
-2. List
+### 第二步 解压
 
-**Bold** and _Italic_ and `Code` text
+太简单了, 不写了
 
-[Link](url) and ![Image](src)
-```
+### 第三步 运行
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+> 这步都不会建议别玩了
 
-### Jekyll Themes
+1. 找到`Lunar Client.exe`
+2. 双击打开
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/chenmy1903/LunarClient/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## 常见问题
 
-### Support or Contact
+### 启动器报错了
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+1. 尝试自己翻译一下, 然后自己解决
+2. 如果修改了启动参数, 改回默认值
+3. 你把代码删了, 重新下载即可
+4. 启动器过旧, 重新下载即可
+5. 把`%USERPROFILE%/.lunarclient`里边的文件都删除
+
+### 中文修复没用
+
+1. 多开了, 都关掉然后重新打开
+2. 把黑窗口关掉了
+3. 把python文件夹给删了
