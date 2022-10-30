@@ -1,43 +1,32 @@
-## LC中文修复
-
-> 所有问题都在这里, 别没事就去私信, 我没空回, 如果新版本更新了我会在一天内同步的, 不要急
+## Lunar中文修复
 
 ## 系统要求
 
-1. Windows 8及以上版本 (python 3.9已经不支持Windows 7)
-2. 64x架构处理器和系统
+1. Windows 7及以上版本
+2. 64x系统
 
-## 如何安装
+## 如何获得
 
-### 第一步 下载
+1. 确保你能访问GitHub
+2. [点击此处](https://github.com/chenmy1903/LunarClient-CN)跳转
 
-> 部分地区加速源没用
+## 后门问题
 
-下载: [加速源(中国推荐)](https://gh.chenmy1903.tk/chenmy1903/LunarClient/releases) [GitHub](https://github.com/chenmy1903/LunarClient/releases)
+LC-CN完全开源,说有后门的均为乐子.
 
-### 第二步 解压
+## 关注原作者
 
-太简单了, 不写了
+> 原作者一直都是chenmy1903 (CubeWhy), 只在GitHub上面发布, 
 
-### 第三步 运行
+1. 关注BiliBili -> [点击此处](https://space.bilibili.com/1106744676)
+2. 关注GitHub -> [点击此处](https://github.com/chenmy1903)
+3. 关注GitHub (CubeWhy) -> [点击此处](https://github.com/CubeWhy)
 
-> 这步都不会建议别玩了
 
-1. 找到`Lunar Client.exe`
-2. 双击打开
+## 演示视频
 
-## 常见问题
+> 感谢<3
 
-### 启动器报错了
-
-1. 尝试自己翻译一下, 然后自己解决
-2. 如果修改了启动参数, 改回默认值
-3. 你把代码删了, 重新下载即可
-4. 启动器过旧, 重新下载即可
-5. 把`%USERPROFILE%/.lunarclient`里边的文件都删除
-
-### 中文修复没用
-
-1. 多开了, 都关掉然后重新打开
-2. 把黑窗口关掉了
-3. 把python文件夹给删了
+1. [白描keicly制作的v2.11.2-fix9-unlockall演示视频](https://www.bilibili.com/video/BV1Ye411M7XA/)
+2. [CubeWhy制作的v2.11.2-fix8演示视频](https://www.bilibili.com/video/BV1z14y1e7ve/)
+3. [CubeWhy制作的v2.11.2-fix9-unlockall演示视频](https://www.bilibili.com/video/BV1Ve4y1y7D1/?spm_id_from=333.999.0.0)
