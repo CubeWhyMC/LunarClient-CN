@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id "com.github.johnrengelman.shadow" version "6.1.0"
     id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
 }
 
 group = 'org.cubewhy.lunarcn'
@@ -18,9 +19,11 @@ repositories {
 
 dependencies {
     include 'com.google.code.gson:gson:2.10.1'
+    include "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 shadowJar {
+    // fatJar
     archiveClassifier.set("")
     configurations = [project.configurations.include]
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
@@ -29,10 +32,22 @@ shadowJar {
 }
 
 application {
-    executableDir = projectDir.getPath() + '/run'
+    // run task
+    executableDir = projectDir.getPath()
     mainClass = 'org.cubewhy.lunarcn.Main'
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": "org.cubewhy.lunarcn.Main" // 主类
+        )
+    }
 }
 
 test {
 
+}
+kotlin {
+    jvmToolchain(11)
 }
