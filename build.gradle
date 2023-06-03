@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id 'application'
+}
+
+group = 'org.cubewhy.lunarcn'
+version = '1.0'
+
+configurations {
+    include
+    implementation.extendsFrom(include)
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    include 'com.google.code.gson:gson:2.10.1'
+}
+
+shadowJar {
+    archiveClassifier.set("")
+    configurations = [project.configurations.include]
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+
+    mainClassName = "Start"
+}
+
+application {
+    executableDir = projectDir.getPath() + '/run'
+    mainClass = 'org.cubewhy.lunarcn.Main'
+}
+
+test {
+
+}
