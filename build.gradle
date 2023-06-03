@@ -28,7 +28,7 @@ shadowJar {
     configurations = [project.configurations.include]
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
 
-    mainClassName = "Start"
+    mainClassName = "org.cubewhy.lunarcn.Main"
 }
 
 application {
