@@ -11,7 +11,6 @@ import org.spongepowered.asm.transformers.MixinClassWriter
 internal object HookManager : SafeTransformer {
     // TODO 使用ClassUtils遍历Hook而不是手动添加Hook
     val hooks = mutableListOf(
-        CreateDisplayHook(),
         // Event hooks
         ChatReceivedEventHook(),
         ChatSentEventHook(),
