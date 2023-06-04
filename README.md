@@ -24,6 +24,8 @@ LunarCN只是一个启动器, 并不包含全饰品功能, 但是我们提供了
 
 LunarCN ModLoader 基于weaveLoader制作, 仅支持LunarClient with Minecraft 1.8.9
 
+示例Mod -> [Click here] (https://github.com/CubeWhy/LunarClient-CN/tree/mod)
+
 ## 常见问题
 
 你可能想找[Wiki](https://github.com/CubeWhy/LunarClient-CN/wiki)
