@@ -47,7 +47,7 @@ public object ModLoader {
 
                 config.mixinConfigs.forEach(Mixins::addConfiguration)
                 HookManager.hooks += config.hooks.map(ModLoader::instantiate)
-                initializers += config.entryPoints.map(ModLoader::instantiate)
+                initializers += config.entrypoints.map(ModLoader::instantiate)
             }
 
         //call preInit after all hooks/mixins are added
@@ -60,14 +60,14 @@ public object ModLoader {
     private data class ModConfig(
         val mixinConfigs: List<String> = listOf(),
         val hooks: List<String> = listOf(),
-        val entryPoints: List<String>
+        val entrypoints: List<String>
     )
 
     /**
      * Grabs the mods' directory, creating it if it doesn't exist.
      * **IF** the file exists as a file and not a directory, it will be deleted.
      *
-     * @return The 'mods' directory: `"~/.lunarclient/mods"`
+     * @return The 'mods' directory: `"~/.cubewhy/lunarcn/mods"`
      */
     private fun getOrCreateModDirectory(): Path {
         val dir = Paths.get(Main.configDir.path + "/mods")

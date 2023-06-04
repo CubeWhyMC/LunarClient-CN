@@ -10,10 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="去掉无法工作的修改标题">
+    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="修改README 增加kotlinx.serialization插件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cubewhy/lunarcn/loader/ModLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/cubewhy/lunarcn/loader/ModLoader.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +255,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685878022410</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="修改README 增加kotlinx.serialization插件">
+      <created>1685882766738</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685882766738</updated>
+    </task>
+    <task id="LOCAL-00009" summary="修改README 增加kotlinx.serialization插件">
+      <created>1685882847026</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1685882847026</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -280,6 +293,7 @@
     <MESSAGE value="添加主类" />
     <MESSAGE value="ModLoader based WeaveLoader" />
     <MESSAGE value="去掉无法工作的修改标题" />
-    <option name="LAST_COMMIT_MESSAGE" value="去掉无法工作的修改标题" />
+    <MESSAGE value="修改README 增加kotlinx.serialization插件" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改README 增加kotlinx.serialization插件" />
   </component>
 </project>
