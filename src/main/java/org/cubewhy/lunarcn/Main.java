@@ -45,7 +45,6 @@ public class Main {
             writer.close();
 
             Process process = Runtime.getRuntime().exec(execArgs.toString());
-            System.out.println("Process PID: " + process.pid());
         } catch (IOException e) {
             Gui.showErrorDialog("Game crashed!\nLunarCN只是检测到了报错, 并不能解决报错, 请勿向LunarClient提交错误报告时说明你在使用LunarCN!\n你也可以去我们的官方群组询问 -> 780154857");
             return 1;

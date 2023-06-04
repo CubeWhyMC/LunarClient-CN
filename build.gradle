@@ -3,32 +3,54 @@ plugins {
     id "com.github.johnrengelman.shadow" version "6.1.0"
     id 'application'
     id 'org.jetbrains.kotlin.jvm' version '1.8.21'
+    id 'com.github.weave-mc.weave-gradle' version 'bcf6ab0279'
+    id 'java-library'
 }
 
 group = 'org.cubewhy.lunarcn'
 version = '1.0'
 
+minecraft.version("1.8.9") // Minecraft Version
+
 configurations {
     include
+    includeApi
+    api.extendsFrom(includeApi)
     implementation.extendsFrom(include)
 }
 
 repositories {
     mavenCentral()
+    mavenLocal()
+    maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
+    maven { url = "https://jitpack.io/" }
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+    includeApi 'org.ow2.asm:asm:9.4'
+    includeApi 'org.ow2.asm:asm-util:9.4'
+    includeApi 'org.ow2.asm:asm-tree:9.4'
+
+    compileOnly 'org.spongepowered:mixin:0.8.5'
+    include 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
     include 'com.google.code.gson:gson:2.10.1'
     include "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 shadowJar {
     // fatJar
-    archiveClassifier.set("")
-    configurations = [project.configurations.include]
+    archiveClassifier.set("fatjar")
+    configurations = [project.configurations.include, project.configurations.includeApi]
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
 
     mainClassName = "org.cubewhy.lunarcn.Main"
+
+    exclude "LICENSE.txt"
+
+    exclude "**/module-info.class"
 }
 
 application {
@@ -40,7 +62,9 @@ application {
 jar {
     manifest {
         attributes(
-                "Main-Class": "org.cubewhy.lunarcn.Main" // 主类
+                "Main-Class": "org.cubewhy.lunarcn.Main", // 主类
+                "Premain-Class": "org.cubewhy.lunarcn.loader.bootstrap.AgentKt", // ModLoader,
+//                "Agent-Class": "org.cubewhy.lunarcn.loader.bootstrap.AgentKt"
         )
     }
 }
@@ -49,5 +73,6 @@ test {
 
 }
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(8)
+    explicitApiWarning()
 }

@@ -4,6 +4,14 @@
 
 [Official Website](https://lunarcn.top) | [Discord](https://discord.gg/rCqCepgWJc) | [QQ Group](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=mqmHg3kA1PKlJUjGpErCPehjOf5-a8Us&authKey=JuagP1HDFpWbbwGUQCMKRZQxDFDXlulIczRaJNCMOK96JGOWaaL%2Fam8%2BFRdSRud5&noverify=0&group_code=780154857)
 
+## 开源软件使用声明
+
+Google Gson
+
+[Weave-Loader](https://github.com/Weave-MC/Weave-Loader)
+
+[Kotlin](https://kotlinlang.org)
+
 ## 支持的系统
 
 离线启动功能暂时只支持Windows
@@ -11,6 +19,10 @@
 ## 关于全饰品
 
 LunarCN只是一个启动器, 并不包含全饰品功能, 但是我们提供了加入JavaAgent的通道, 你可以编写你自己的JavaAgent并使用
+
+## ModLoader
+
+LunarCN ModLoader 基于weaveLoader制作, 仅支持LunarClient with Minecraft 1.8.9
 
 ## 常见问题
 
