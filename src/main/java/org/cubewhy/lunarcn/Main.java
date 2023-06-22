@@ -58,7 +58,7 @@ public class Main {
             if (launchScript.exists()) {
                 // 离线启动
                 try {
-                    Runtime.getRuntime().exec("cmd /Q /c start " + launchScript.getAbsolutePath());
+                    Runtime.getRuntime().exec("cmd /Q /c start \"" + launchScript.getAbsolutePath() + "\"");
                 } catch (IOException e) {
                     Gui.showErrorDialog("离线启动失败, 可能你没有使用Windows系统");
                     System.exit(1);

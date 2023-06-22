@@ -12,7 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="修改README 增加kotlinx.serialization插件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cubewhy/lunarcn/loader/ModLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/cubewhy/lunarcn/loader/ModLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +93,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;next-gen&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/CubeWhy/Desktop/shadiao/LunarCnLauncher/src/main/modloader/src/main/java/org/cubewhy/lunarcn/Main.java&quot;,
@@ -100,7 +101,8 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.Kotlin.scripting&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.Kotlin.scripting&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="Push.Settings">
@@ -205,6 +207,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685718348322</updated>
+      <workItem from="1686370836084" duration="9000" />
+      <workItem from="1686374282943" duration="31000" />
+      <workItem from="1687414302546" duration="168000" />
     </task>
     <task id="LOCAL-00001" summary="INIT">
       <created>1685757822983</created>
@@ -271,6 +276,9 @@
     </task>
     <option name="localTasksCounter" value="10" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
