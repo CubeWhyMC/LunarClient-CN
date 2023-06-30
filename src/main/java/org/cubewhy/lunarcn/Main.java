@@ -1,6 +1,11 @@
 package org.cubewhy.lunarcn;
 
 import com.google.gson.JsonObject;
+import com.sun.tools.attach.VirtualMachine;
+import com.sun.tools.attach.VirtualMachineDescriptor;
+import com.sun.tools.attach.spi.AttachProvider;
+import lombok.var;
+import net.minecraft.util.ResourceLocation;
 import org.cubewhy.lunarcn.files.Config;
 import org.cubewhy.lunarcn.gui.Gui;
 import org.cubewhy.lunarcn.launcher.JavaAgents;
@@ -10,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
 
@@ -17,6 +23,8 @@ public class Main {
     public static final File launchScript = new File(configDir, "launch.bat");
 
     public static Config config; // 配置文件
+    public static ResourceLocation clientLogo = new ResourceLocation("lunarcn/lunarcn.png");
+    public static String version = "next-gen build 3";
 
     public Main() {
         if (config.getConfig().isEmpty()) {
@@ -24,7 +32,8 @@ public class Main {
             config.setValue("jre", ""); // 自定义JRE
             config.setValue("jvm-args", ""); // 自定义JVM参数
             config.setValue("args", ""); // 自定义游戏参数
-            config.setValue("java-agents", new JsonObject());
+            config.setValue("java-agents", new JsonObject()); // JavaAgents配置
+            config.save();
         }
 
         JavaAgents.init(); // 初始化JavaAgents文件夹
@@ -32,7 +41,6 @@ public class Main {
 
     private int start(String[] args) {
         StringBuilder execArgs = Launcher.buildArgs(args);
-        System.out.println(execArgs);
         try {
             if (!launchScript.exists()) {
                 launchScript.createNewFile();
@@ -40,8 +48,8 @@ public class Main {
             FileWriter writer = new FileWriter(launchScript);
             writer.write("@echo off\n");
             writer.write("cd " + System.getProperty("user.dir") + "\n");
-            writer.write(execArgs.toString() + "\n");
-            writer.write("exit\n");
+            writer.write(execArgs + "\n");
+            writer.write("pause\n");
             writer.close();
 
             Process process = Runtime.getRuntime().exec(execArgs.toString());
@@ -52,9 +60,35 @@ public class Main {
         return 0;
     }
 
+    private int attach(String[] args) {
+        try {
+            List<VirtualMachineDescriptor> virtualMachineDescriptors = VirtualMachine.list();
+            boolean successful = false;
+            for (VirtualMachineDescriptor descriptor :
+                    virtualMachineDescriptors) {
+                if (descriptor.displayName().split(" ")[0].equals("com.moonsworth.lunar.genesis.Genesis")) {
+                    VirtualMachine vm = VirtualMachine.attach(descriptor.id());
+                    vm.loadAgent(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
+                    System.out.println("Load agent at pid " + descriptor.id());
+                    successful = true;
+                    break;
+                }
+            }
+
+            if (!successful) {
+                throw new Throwable("没有存在的LunarClient进程");
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public static void main(@NotNull String[] args) {
         config = new Config(configDir + "/config.json");
         if (args.length == 0) {
+            Gui.showMessageDialog("本程序无法直接双击启动, 你可以使用如下参数\n--offline 离线启动\n--inject 运行时热注入");
+        } else if (args.length == 1 && args[0].equalsIgnoreCase("--offline")) {
             if (launchScript.exists()) {
                 // 离线启动
                 try {
@@ -64,9 +98,11 @@ public class Main {
                     System.exit(1);
                 }
             } else {
-                Gui.showMessageDialog("该程序需要搭配LunarClient CN进行使用!\n下载地址: lunarcn.top");
+                Gui.showMessageDialog("你之前没有启动过LunarCN, 请正常启动一次LunarCN再使用此功能");
                 System.exit(1);
             }
+        } else if (args.length == 1 && args[0].equalsIgnoreCase("--inject")) {
+            System.exit(new Main().attach(args));
         } else {
             System.exit(new Main().start(args));
         }

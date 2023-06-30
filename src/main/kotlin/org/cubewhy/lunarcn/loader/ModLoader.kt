@@ -9,6 +9,7 @@ import org.cubewhy.lunarcn.loader.api.ModInitializer
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinService
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinTransformer
 import org.spongepowered.asm.launch.MixinBootstrap
+import org.spongepowered.asm.mixin.MixinEnvironment
 import org.spongepowered.asm.mixin.Mixins
 import org.spongepowered.asm.service.MixinService
 import java.lang.instrument.Instrumentation
@@ -27,7 +28,11 @@ public object ModLoader {
     public fun init(inst: Instrumentation) {
         println("[LunarCN Loader] Initializing LunarCN - based on Weave Loader")
 
-        MixinBootstrap.init()
+        MixinBootstrap.init() // Init mixin
+
+        Mixins.addConfiguration("mixins.lunarcn.json") // Load default mixin config
+        MixinEnvironment.getDefaultEnvironment().setSide(MixinEnvironment.Side.CLIENT)
+
         check(MixinService.getService() is LunarCnMixinService) { "Active mixin service is NOT LunarCnMixinService" }
 
         inst.addTransformer(LunarCnMixinTransformer)

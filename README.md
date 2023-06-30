@@ -12,6 +12,12 @@ Google Gson
 
 [Kotlin](https://kotlinlang.org)
 
+## 关于Attach (注入)
+
+LunarClient必须运行在JDK上, 关于设置自定义Java -> [here](#如何使用自定义jre)
+
+使用DLL注入的程序不受JAVA影响, LunarClient CN使用java attach实现运行时热修改class
+
 ## 支持的系统
 
 离线启动功能暂时只支持Windows

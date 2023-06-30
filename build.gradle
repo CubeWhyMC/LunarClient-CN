@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'idea'
     id "com.github.johnrengelman.shadow" version "6.1.0"
     id 'application'
     id 'org.jetbrains.kotlin.jvm' version '1.8.21'
@@ -9,7 +10,7 @@ plugins {
 }
 
 group = 'org.cubewhy.lunarcn'
-version = '1.0'
+version = 'next-gen build 3'
 
 minecraft.version("1.8.9") // Minecraft Version
 
@@ -23,6 +24,7 @@ configurations {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven { url = "https://nexus.velocitypowered.com/repository/maven-public/" }
     maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
     maven { url = "https://jitpack.io/" }
 }
@@ -36,9 +38,14 @@ dependencies {
     includeApi 'org.ow2.asm:asm-tree:9.4'
 
     compileOnly 'org.spongepowered:mixin:0.8.5'
+
     include 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
     include 'com.google.code.gson:gson:2.10.1'
     include "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    include 'io.earcam.wrapped:com.sun.tools.attach:1.8.0_jdk8u172-b11'
+
+    compileOnly 'org.apache.commons:commons-lang3:3.12.0'
+    compileOnly group: 'org.lwjgl.lwjgl', name: 'lwjgl', version: '2.9.4-nightly-20150209'
 }
 
 shadowJar {
@@ -65,14 +72,15 @@ jar {
         attributes(
                 "Main-Class": "org.cubewhy.lunarcn.Main", // 主类
                 "Premain-Class": "org.cubewhy.lunarcn.loader.bootstrap.AgentKt", // ModLoader,
-//                "Agent-Class": "org.cubewhy.lunarcn.loader.bootstrap.AgentKt"
+                "Agent-Class": "org.cubewhy.lunarcn.loader.bootstrap.AgentKt",
+                "MixinConfigs": "mixins.lunarcn.json",
+                "ModSide": "CLIENT",
+                "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+                "TweakOrder": "0",
         )
     }
 }
 
-test {
-
-}
 kotlin {
     jvmToolchain(8)
     explicitApiWarning()
