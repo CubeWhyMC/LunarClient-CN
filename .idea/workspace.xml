@@ -10,9 +10,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="修改README 增加kotlinx.serialization插件">
+    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="增加一些mixin (b3)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +41,12 @@
                 <item name="LunarCnLauncher" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LunarCnLauncher" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -52,8 +57,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -77,7 +82,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2QeeCIhxf2MM9q6shfCbqaEXv87" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -96,12 +101,17 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;next-gen&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/CubeWhy/Desktop/shadiao/LunarCnLauncher/src/main/modloader/src/main/java/org/cubewhy/lunarcn/Main.java&quot;,
     &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.Kotlin.scripting&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -112,58 +122,58 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\shadiao\LunarClientCN\src\main\resources\assets\minecraft\lunarcn" />
       <recent name="C:\Users\CubeWhy\Desktop\shadiao\LunarCnLauncher\src\main\kotlin\org\cubewhy\lunarcn\loader" />
       <recent name="C:\Users\CubeWhy\Desktop\shadiao\LunarCnLauncher\src\main\kotlin\org\cubewhy\loader" />
       <recent name="C:\Users\CubeWhy\Desktop\shadiao\LunarCnLauncher\src\modloader\src\main\resources\META-INF" />
       <recent name="C:\Users\CubeWhy\Desktop\shadiao\LunarCnLauncher\src\modloader\src\main\resources" />
-      <recent name="C:\Users\CubeWhy\Desktop\shadiao\LunarCnLauncher\src" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="org.cubewhy.lunarcn.launcher" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle init" />
+      <command value="gradle clean" />
+      <command value="gradle dependencies" />
+      <command value="gradle build" />
+    </option>
+  </component>
   <component name="RunManager" selected="Gradle.Build LunarCn">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="org.cubewhy.lunarcn.Main" />
       <module name="LunarCnLauncher.main" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.cubewhy.lunarcn.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestConfig" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.cubewhy.lunarcn.TestConfig" />
-      <module name="LunarCnLauncher.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.cubewhy.lunarcn.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestJavaAgent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.cubewhy.lunarcn.TestJavaAgent" />
-      <module name="LunarCnLauncher.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.cubewhy.lunarcn.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PROGRAM_PARAMETERS" value="--inject" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Build LunarCn" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--info" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="LunarClientCN [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -185,17 +195,110 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="LunarClientCN [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="LunarClientCN [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="LunarClientCN [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="init" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="LunarClientCN [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Gradle.Build LunarCn" />
+      <item itemvalue="Gradle.LunarClientCN [build]" />
+      <item itemvalue="Gradle.LunarClientCN [clean]" />
+      <item itemvalue="Gradle.LunarClientCN [dependencies]" />
+      <item itemvalue="Gradle.LunarClientCN [init]" />
+      <item itemvalue="Gradle.LunarClientCN [run]" />
       <item itemvalue="应用程序.Main" />
-      <item itemvalue="应用程序.TestConfig" />
-      <item itemvalue="应用程序.TestJavaAgent" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.TestJavaAgent" />
-        <item itemvalue="应用程序.Main" />
-        <item itemvalue="应用程序.TestConfig" />
+        <item itemvalue="Gradle.LunarClientCN [run]" />
+        <item itemvalue="Gradle.LunarClientCN [dependencies]" />
+        <item itemvalue="Gradle.LunarClientCN [build]" />
+        <item itemvalue="Gradle.LunarClientCN [clean]" />
+        <item itemvalue="Gradle.LunarClientCN [init]" />
       </list>
     </recent_temporary>
   </component>
@@ -210,6 +313,9 @@
       <workItem from="1686370836084" duration="9000" />
       <workItem from="1686374282943" duration="31000" />
       <workItem from="1687414302546" duration="168000" />
+      <workItem from="1688113684446" duration="13987000" />
+      <workItem from="1688129467487" duration="287000" />
+      <workItem from="1688133139993" duration="657000" />
     </task>
     <task id="LOCAL-00001" summary="INIT">
       <created>1685757822983</created>
@@ -274,7 +380,15 @@
       <option name="project" value="LOCAL" />
       <updated>1685882847026</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="增加一些mixin (b3)">
+      <option name="closed" value="true" />
+      <created>1688127499238</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1688127499238</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,6 +416,7 @@
     <MESSAGE value="ModLoader based WeaveLoader" />
     <MESSAGE value="去掉无法工作的修改标题" />
     <MESSAGE value="修改README 增加kotlinx.serialization插件" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改README 增加kotlinx.serialization插件" />
+    <MESSAGE value="增加一些mixin (b3)" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加一些mixin (b3)" />
   </component>
 </project>

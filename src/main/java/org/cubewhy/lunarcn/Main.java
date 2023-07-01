@@ -23,7 +23,7 @@ public class Main {
     public static final File launchScript = new File(configDir, "launch.bat");
 
     public static Config config; // 配置文件
-    public static ResourceLocation clientLogo = new ResourceLocation("lunarcn/lunarcn.png");
+    public static String clientLogo = "lunarcn/lunarcn.png";
     public static String version = "next-gen build 3";
 
     public Main() {
