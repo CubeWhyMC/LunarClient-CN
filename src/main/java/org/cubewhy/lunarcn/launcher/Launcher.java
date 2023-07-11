@@ -1,5 +1,7 @@
 package org.cubewhy.lunarcn.launcher;
 
+import org.cubewhy.lunarcn.JavaAgent;
+
 import static org.cubewhy.lunarcn.Main.config;
 
 public class Launcher {
@@ -19,7 +21,7 @@ public class Launcher {
         exec.append(" ");
 
         for (JavaAgent agent : javaAgents) {
-            exec.append(agent.getExecArgs()).append(" ");
+            exec.append(agent.getJvmArgs()).append(" ");
         }
 
         exec.append(argString);

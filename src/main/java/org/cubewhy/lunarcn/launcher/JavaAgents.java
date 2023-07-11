@@ -1,6 +1,7 @@
 package org.cubewhy.lunarcn.launcher;
 
 import com.google.gson.JsonObject;
+import org.cubewhy.lunarcn.JavaAgent;
 
 import java.io.File;
 
