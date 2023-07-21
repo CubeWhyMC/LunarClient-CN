@@ -10,7 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="Access Writer (not tested)" />
+    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="fix text position">
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -318,7 +320,7 @@
       <workItem from="1688555633210" duration="759000" />
       <workItem from="1688790268350" duration="77000" />
       <workItem from="1689033518944" duration="1397000" />
-      <workItem from="1689911620723" duration="3652000" />
+      <workItem from="1689911620723" duration="4058000" />
     </task>
     <task id="LOCAL-00001" summary="INIT">
       <created>1685757822983</created>
@@ -415,7 +417,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689915115933</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix text position">
+      <option name="closed" value="true" />
+      <created>1689915634602</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1689915634602</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,6 +457,7 @@
     <MESSAGE value="修复代码" />
     <MESSAGE value="使用lunarLauncherLib重写离线启动(依然只支持windows)" />
     <MESSAGE value="Access Writer (not tested)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Access Writer (not tested)" />
+    <MESSAGE value="fix text position" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix text position" />
   </component>
 </project>
