@@ -30,7 +30,9 @@ public abstract class MixinGuiConnecting extends GuiScreen {
 
         this.drawCenteredString(mc.fontRendererObj, "Connecting to", this.width / 2, this.height / 4 + 110, 0xFFFFFF);
         this.drawCenteredString(mc.fontRendererObj, ip, this.width / 2, this.height / 4 + 120, 0x5281FB);
-        this.drawCenteredString(mc.fontRendererObj, "You're playing on " + mc.getSession().getUsername(), 30, 30, new Color(150, 50, 50).getRGB());
+        String text = "You're playing on " + mc.getSession().getUsername();
+        int textWidth = fontRendererObj.getStringWidth(text);
+        this.drawCenteredString(mc.fontRendererObj, text, 30 + textWidth, 30, new Color(150, 50, 50).getRGB());
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }

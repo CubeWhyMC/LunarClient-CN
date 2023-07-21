@@ -8,15 +8,22 @@ import org.cubewhy.lunarcn.Main
 import org.cubewhy.lunarcn.loader.api.ModInitializer
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinService
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinTransformer
+import org.cubewhy.lunarcn.loader.util.AccessWriter
+import org.objectweb.asm.ClassReader
+import org.objectweb.asm.ClassWriter
+import org.objectweb.asm.Opcodes
 import org.spongepowered.asm.launch.MixinBootstrap
 import org.spongepowered.asm.mixin.MixinEnvironment
 import org.spongepowered.asm.mixin.Mixins
 import org.spongepowered.asm.service.MixinService
+import java.io.FileInputStream
+import java.io.IOException
 import java.lang.instrument.Instrumentation
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.jar.JarFile
+import javax.swing.JOptionPane
 import kotlin.io.path.*
 
 public object ModLoader {
@@ -46,13 +53,36 @@ public object ModLoader {
             .map { JarFile(it.toFile()).also(inst::appendToSystemClassLoaderSearch) }
             .forEach { jar ->
                 println("[LunarCN Loader] Loading mod ${jar.name}")
+                try {
+                    assert(jar.getEntry("weave.mod.json") != null)
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "${jar.name} maybe a Weave mod, lunarCN Loader may failed to load this mod",
+                        "Warning",
+                        JOptionPane.WARNING_MESSAGE
+                    )
+                } catch (_: IOException) {
+                }
 
-                val configEntry = jar.getEntry("lunarcn.mod.json") ?: error("${jar.name} does not contain a lunarcn.mod.json!")
+                val configEntry =
+                    jar.getEntry("lunarcn.mod.json") ?: error("${jar.name} does not contain a lunarcn.mod.json!")
                 val config = json.decodeFromStream<ModConfig>(jar.getInputStream(configEntry))
 
                 config.mixinConfigs.forEach(Mixins::addConfiguration)
                 HookManager.hooks += config.hooks.map(ModLoader::instantiate)
                 initializers += config.entrypoints.map(ModLoader::instantiate)
+
+                // write access for LunarClient
+                try {
+                    val accessFileEntry = jar.getEntry("access.txt")
+                    val inputStream = jar.getInputStream(accessFileEntry)
+                    for (line in inputStream.bufferedReader().readLines()) {
+                        writeAccess(line)
+                    }
+                } catch (err: IOException) {
+                    err.printStackTrace()
+                    println("${jar.name} didn't have access.txt or failed to write access, so skip write access for this mod")
+                }
             }
 
         //call preInit after all hooks/mixins are added
@@ -68,6 +98,32 @@ public object ModLoader {
         val entrypoints: List<String>
     )
 
+    private fun writeAccess(line: String) {
+        val code = line.split("#")[0]
+        if (code.startsWith("#")) {
+            return // this line is a comment
+        }
+        val accessCode = code.split(" ")[0]
+        val target = code.split(" ")[1]
+        var opCodeAccess: Int = Opcodes.ACC_PUBLIC
+        println("Writing access ($accessCode) -> $target")
+        when (accessCode) {
+            "public" -> {
+                opCodeAccess = Opcodes.ACC_PUBLIC
+            }
+            "private" -> {
+                opCodeAccess = Opcodes.ACC_PRIVATE
+            }
+            "protected" -> {
+                opCodeAccess = Opcodes.ACC_PROTECTED
+            }
+        }
+        val cr = ClassReader(target.replace(".", "/"))
+        val cw = ClassWriter(0)
+        val writer = AccessWriter(opCodeAccess, cw)
+        cr.accept(writer, ClassReader.SKIP_DEBUG) // write access
+    }
+
     /**
      * Grabs the mods' directory, creating it if it doesn't exist.
      * **IF** the file exists as a file and not a directory, it will be deleted.
@@ -81,7 +137,7 @@ public object ModLoader {
         return dir
     }
 
-    private inline fun<reified T> instantiate(className: String): T =
+    private inline fun <reified T> instantiate(className: String): T =
         Class.forName(className)
             .getConstructor()
             .newInstance() as? T
