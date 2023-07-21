@@ -10,7 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="fix text position">
+    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="Update LunarLauncherLib">
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,35 +92,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;next-gen&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/CubeWhy/Desktop/shadiao/LunarCnLauncher/src/main/modloader/src/main/java/org/cubewhy/lunarcn/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "next-gen",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "F:/shadiao/LunarClientCN/libs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/CubeWhy/Desktop/shadiao/LunarCnLauncher/src/main/modloader/src/main/java/org/cubewhy/lunarcn/Main.java",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="Push.Settings">
     <force-push-targets>
       <force-push-target remote-path="origin" branch="next-gen" />
     </force-push-targets>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\shadiao\LunarClientCN\libs" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\shadiao\LunarClientCN\src\main\resources\assets\minecraft\lunarcn" />
       <recent name="C:\Users\CubeWhy\Desktop\shadiao\LunarCnLauncher\src\main\kotlin\org\cubewhy\lunarcn\loader" />
@@ -320,7 +324,7 @@
       <workItem from="1688555633210" duration="759000" />
       <workItem from="1688790268350" duration="77000" />
       <workItem from="1689033518944" duration="1397000" />
-      <workItem from="1689911620723" duration="4058000" />
+      <workItem from="1689911620723" duration="4418000" />
     </task>
     <task id="LOCAL-00001" summary="INIT">
       <created>1685757822983</created>
@@ -425,7 +429,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689915634602</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Update LunarLauncherLib">
+      <option name="closed" value="true" />
+      <created>1689915887676</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1689915887676</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,6 +470,7 @@
     <MESSAGE value="使用lunarLauncherLib重写离线启动(依然只支持windows)" />
     <MESSAGE value="Access Writer (not tested)" />
     <MESSAGE value="fix text position" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix text position" />
+    <MESSAGE value="Update LunarLauncherLib" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update LunarLauncherLib" />
   </component>
 </project>
