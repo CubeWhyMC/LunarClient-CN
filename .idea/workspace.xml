@@ -10,13 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="使用lunarLauncherLib重写离线启动(依然只支持windows)">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/cubewhy/lunarcn/loader/util/AccessWriter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/cubewhy/lunarcn/loader/user/mixins/MixinGuiConnecting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cubewhy/lunarcn/loader/user/mixins/MixinGuiConnecting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cubewhy/lunarcn/loader/ModLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/cubewhy/lunarcn/loader/ModLoader.kt" afterDir="false" />
-    </list>
+    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="Access Writer (not tested)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -324,7 +318,7 @@
       <workItem from="1688555633210" duration="759000" />
       <workItem from="1688790268350" duration="77000" />
       <workItem from="1689033518944" duration="1397000" />
-      <workItem from="1689911620723" duration="3223000" />
+      <workItem from="1689911620723" duration="3652000" />
     </task>
     <task id="LOCAL-00001" summary="INIT">
       <created>1685757822983</created>
@@ -413,7 +407,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689034701851</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Access Writer (not tested)">
+      <option name="closed" value="true" />
+      <created>1689915115933</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1689915115933</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,6 +446,7 @@
     <MESSAGE value="增加一些mixin (b3)" />
     <MESSAGE value="修复代码" />
     <MESSAGE value="使用lunarLauncherLib重写离线启动(依然只支持windows)" />
-    <option name="LAST_COMMIT_MESSAGE" value="使用lunarLauncherLib重写离线启动(依然只支持windows)" />
+    <MESSAGE value="Access Writer (not tested)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Access Writer (not tested)" />
   </component>
 </project>
