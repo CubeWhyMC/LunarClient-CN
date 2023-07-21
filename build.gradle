@@ -10,7 +10,7 @@ plugins {
 }
 
 group = 'org.cubewhy.lunarcn'
-version = 'next-gen build 3'
+version = 'build4-pre1'
 
 minecraft.version("1.8.9") // Minecraft Version
 
