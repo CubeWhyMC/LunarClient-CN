@@ -1,4 +1,4 @@
-package org.cubewhy.lunarcn.loader.util
+package org.cubewhy.lunarcn.loader.utils
 
 import org.cubewhy.lunarcn.loader.api.event.Event
 import org.cubewhy.lunarcn.loader.api.event.EventBus

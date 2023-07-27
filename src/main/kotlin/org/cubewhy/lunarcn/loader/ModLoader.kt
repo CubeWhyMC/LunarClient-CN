@@ -8,7 +8,7 @@ import org.cubewhy.lunarcn.Main
 import org.cubewhy.lunarcn.loader.api.ModInitializer
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinService
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinTransformer
-import org.cubewhy.lunarcn.loader.util.AccessWriter
+import org.cubewhy.lunarcn.loader.utils.AccessWriter
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Opcodes
@@ -16,7 +16,6 @@ import org.spongepowered.asm.launch.MixinBootstrap
 import org.spongepowered.asm.mixin.MixinEnvironment
 import org.spongepowered.asm.mixin.Mixins
 import org.spongepowered.asm.service.MixinService
-import java.io.FileInputStream
 import java.io.IOException
 import java.lang.instrument.Instrumentation
 import java.nio.file.Files
@@ -26,13 +25,13 @@ import java.util.jar.JarFile
 import javax.swing.JOptionPane
 import kotlin.io.path.*
 
-public object ModLoader {
+object ModLoader {
     /**
      * @see [org.cubewhy.lunarcn.loader.bootstrap.premain]
      */
     @JvmStatic
     @OptIn(ExperimentalSerializationApi::class)
-    public fun init(inst: Instrumentation) {
+    fun init(inst: Instrumentation) {
         println("[LunarCN Loader] Initializing LunarCN - based on Weave Loader")
 
         MixinBootstrap.init() // Init mixin
@@ -53,15 +52,13 @@ public object ModLoader {
             .map { JarFile(it.toFile()).also(inst::appendToSystemClassLoaderSearch) }
             .forEach { jar ->
                 println("[LunarCN Loader] Loading mod ${jar.name}")
-                try {
-                    assert(jar.getEntry("weave.mod.json") != null)
+                if (jar.getEntry("weave.mod.json") != null) {
                     JOptionPane.showMessageDialog(
                         null,
                         "${jar.name} maybe a Weave mod, lunarCN Loader may failed to load this mod",
                         "Warning",
                         JOptionPane.WARNING_MESSAGE
                     )
-                } catch (_: IOException) {
                 }
 
                 val configEntry =
@@ -111,9 +108,11 @@ public object ModLoader {
             "public" -> {
                 opCodeAccess = Opcodes.ACC_PUBLIC
             }
+
             "private" -> {
                 opCodeAccess = Opcodes.ACC_PRIVATE
             }
+
             "protected" -> {
                 opCodeAccess = Opcodes.ACC_PROTECTED
             }

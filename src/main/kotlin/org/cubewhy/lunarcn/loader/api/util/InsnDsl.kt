@@ -228,9 +228,9 @@ private class VisitorInsnBuilder(private val parent: MethodVisitor) : InsnBuilde
     override fun InsnList.unaryPlus() = accept(parent)
 }
 
-public fun asm(block: InsnBuilder.() -> Unit): InsnList =
+fun asm(block: InsnBuilder.() -> Unit): InsnList =
     InsnListBuilder().apply(block).list
 
-public fun MethodVisitor.visitAsm(block: InsnBuilder.() -> Unit) {
+fun MethodVisitor.visitAsm(block: InsnBuilder.() -> Unit) {
     VisitorInsnBuilder(this).run(block)
 }

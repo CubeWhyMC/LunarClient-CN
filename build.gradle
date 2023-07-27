@@ -1,12 +1,9 @@
 plugins {
     id 'java'
-    id 'idea'
     id "com.github.johnrengelman.shadow" version "6.1.0"
-    id 'application'
-    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
     id 'com.github.weave-mc.weave-gradle' version 'bcf6ab0279'
-    id 'java-library'
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0-Beta"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
 }
 
 group = 'org.cubewhy.lunarcn'
@@ -57,23 +54,15 @@ shadowJar {
     configurations = [project.configurations.include, project.configurations.includeApi]
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
 
-    mainClassName = "org.cubewhy.lunarcn.Main"
-
     exclude "LICENSE.txt"
 
     exclude "**/module-info.class"
 }
 
-application {
-    // run task
-    executableDir = projectDir.getPath()
-    mainClass = 'org.cubewhy.lunarcn.Main'
-}
-
 jar {
     manifest {
         attributes(
-                "Main-Class": "org.cubewhy.lunarcn.Main", // 主类
+                "Main-Class": "org.cubewhy.lunarcn.Main", // Main-Class
                 "Premain-Class": "org.cubewhy.lunarcn.loader.bootstrap.AgentKt", // ModLoader,
                 "Agent-Class": "org.cubewhy.lunarcn.loader.bootstrap.AgentKt",
                 "MixinConfigs": "mixins.lunarcn.json",
@@ -86,5 +75,4 @@ jar {
 
 kotlin {
     jvmToolchain(17)
-    explicitApiWarning()
 }

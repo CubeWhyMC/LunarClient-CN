@@ -13,82 +13,82 @@ import net.minecraft.world.World
 import org.lwjgl.input.Keyboard
 import org.lwjgl.input.Mouse
 
-public abstract class Event
-public abstract class CancellableEvent : Event() {
+abstract class Event
+abstract class CancellableEvent : Event() {
     @get:JvmName("isCancelled")
-    public var cancelled: Boolean = false
+    var cancelled: Boolean = false
 
 }
 
-public sealed class TickEvent : Event() {
-    public object Pre : TickEvent()
-    public object Post : TickEvent()
+sealed class TickEvent : Event() {
+    data object Pre : TickEvent()
+    data object Post : TickEvent()
 }
 
-public class KeyboardEvent : Event() {
+class KeyboardEvent : Event() {
 
-    public val keyCode: Int =
+    val keyCode: Int =
         if (Keyboard.getEventKey() == 0) Keyboard.getEventCharacter().code + 256
         else Keyboard.getEventKey()
 
-    public val keyState: Boolean = Keyboard.getEventKeyState()
+    val keyState: Boolean = Keyboard.getEventKeyState()
 
 }
 
-public class MouseEvent : CancellableEvent() {
+class MouseEvent : CancellableEvent() {
 
-    public val x: Int = Mouse.getEventX()
-    public val y: Int = Mouse.getEventY()
+    val x: Int = Mouse.getEventX()
+    val y: Int = Mouse.getEventY()
 
     @get:JvmName("getDX")
-    public val dx: Int = Mouse.getEventDX()
+    val dx: Int = Mouse.getEventDX()
 
     @get:JvmName("getDY")
-    public val dy: Int = Mouse.getEventDY()
+    val dy: Int = Mouse.getEventDY()
 
     @get:JvmName("getDWheel")
-    public val dwheel: Int = Mouse.getEventDWheel()
-    public val button: Int = Mouse.getEventButton()
-    public val buttonState: Boolean = Mouse.getEventButtonState()
-    public val nanoseconds: Long = Mouse.getEventNanoseconds()
+    val dwheel: Int = Mouse.getEventDWheel()
+    val button: Int = Mouse.getEventButton()
+    val buttonState: Boolean = Mouse.getEventButtonState()
+    val nanoseconds: Long = Mouse.getEventNanoseconds()
 
 }
 
-public class ChatReceivedEvent(public val message: IChatComponent) : CancellableEvent()
-public class ChatSentEvent(public val message: String) : CancellableEvent()
-public class GuiOpenEvent(public val screen: GuiScreen?) : CancellableEvent()
+class ChatReceivedEvent(val message: IChatComponent) : CancellableEvent()
+class ChatSentEvent(val message: String) : CancellableEvent()
+class GuiOpenEvent(val screen: GuiScreen?) : CancellableEvent()
 
-public sealed class RenderGameOverlayEvent(public val partialTicks: Float) : Event() {
+sealed class RenderGameOverlayEvent(val partialTicks: Float) : Event() {
 
-    public class Pre(partialTicks: Float) : RenderGameOverlayEvent(partialTicks)
-    public class Post(partialTicks: Float) : RenderGameOverlayEvent(partialTicks)
-
-}
-
-public sealed class EntityListEvent(public val entity: Entity) : Event() {
-
-    public class Add(entity: Entity) : EntityListEvent(entity)
-    public class Remove(entity: Entity) : EntityListEvent(entity)
+    class Pre(partialTicks: Float) : RenderGameOverlayEvent(partialTicks)
+    class Post(partialTicks: Float) : RenderGameOverlayEvent(partialTicks)
 
 }
 
-public sealed class PlayerListEvent(public val playerData: AddPlayerData) : Event() {
+sealed class EntityListEvent(val entity: Entity) : Event() {
 
-    public class Add(playerData: AddPlayerData) : PlayerListEvent(playerData)
-    public class Remove(playerData: AddPlayerData) : PlayerListEvent(playerData)
+    class Add(entity: Entity) : EntityListEvent(entity)
+    class Remove(entity: Entity) : EntityListEvent(entity)
 
 }
 
-public sealed class RenderLivingEvent(
-    public val renderer: RendererLivingEntity<EntityLivingBase>,
-    public val entity: EntityLivingBase,
-    public val x: Double,
-    public val y: Double,
-    public val z: Double,
-    public val partialTicks: Float
+sealed class PlayerListEvent(val playerData: AddPlayerData) : Event() {
+
+    class Add(playerData: AddPlayerData) : PlayerListEvent(playerData)
+    class Remove(playerData: AddPlayerData) : PlayerListEvent(playerData)
+
+}
+
+sealed class RenderLivingEvent(
+    val renderer: RendererLivingEntity<EntityLivingBase>,
+    val entity: EntityLivingBase,
+    val x: Double,
+    val y: Double,
+    val z: Double,
+    val partialTicks: Float
 ) : CancellableEvent() {
 
-    public class Pre(
+    class Pre(
         renderer: RendererLivingEntity<EntityLivingBase>,
         entity: EntityLivingBase,
         x: Double,
@@ -97,7 +97,7 @@ public sealed class RenderLivingEvent(
         partialTicks: Float
     ) : RenderLivingEvent(renderer, entity, x, y, z, partialTicks)
 
-    public class Post(
+    class Post(
         renderer: RendererLivingEntity<EntityLivingBase>,
         entity: EntityLivingBase,
         x: Double,
@@ -108,32 +108,32 @@ public sealed class RenderLivingEvent(
 
 }
 
-public class RenderWorldEvent(public val partialTicks: Float) : Event()
+class RenderWorldEvent(val partialTicks: Float) : Event()
 
-public class RenderHandEvent(public val partialTicks: Float) : CancellableEvent()
+class RenderHandEvent(val partialTicks: Float) : CancellableEvent()
 
-public class ServerConnectEvent(
-    public val ip: String,
-    public val port: Int,
+class ServerConnectEvent(
+    val ip: String,
+    val port: Int,
 ) : Event() {
-    public val serverData: ServerData = Minecraft.getMinecraft().currentServerData
+    val serverData: ServerData = Minecraft.getMinecraft().currentServerData
 }
 
-public sealed class StartGameEvent : Event() {
+sealed class StartGameEvent : Event() {
 
-    public object Pre : StartGameEvent()
-    public object Post : StartGameEvent()
+    object Pre : StartGameEvent()
+    object Post : StartGameEvent()
 
 }
 
-public object ShutdownEvent : Event()
+object ShutdownEvent : Event()
 
-public sealed class WorldEvent(public val world: World) : Event() {
-    public class Load(world: World) : WorldEvent(world)
-    public class Unload(world: World) : WorldEvent(world)
+sealed class WorldEvent(val world: World) : Event() {
+    class Load(world: World) : WorldEvent(world)
+    class Unload(world: World) : WorldEvent(world)
 }
 
-public sealed class PacketEvent(public val packet: Packet<*>) : CancellableEvent() {
-    public class Send(packet: Packet<*>) : PacketEvent(packet)
-    public class Receive(packet: Packet<*>) : PacketEvent(packet)
+sealed class PacketEvent(val packet: Packet<*>) : CancellableEvent() {
+    class Send(packet: Packet<*>) : PacketEvent(packet)
+    class Receive(packet: Packet<*>) : PacketEvent(packet)
 }

@@ -10,11 +10,10 @@ import org.cubewhy.lunarcn.files.Config;
 import org.cubewhy.lunarcn.gui.Gui;
 import org.cubewhy.lunarcn.launcher.JavaAgents;
 import org.cubewhy.lunarcn.launcher.Launcher;
+import org.cubewhy.lunarcn.loader.utils.GitUtils;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class Main {
@@ -23,17 +22,17 @@ public class Main {
     public static final File configDir = new File(System.getProperty("user.home") + "/.cubewhy" + "/lunarcn"); // 配置文件目录
     public static final File launchScript = new File(configDir, "launch.bat");
 
-    public static Config config; // 配置文件
+    public static Config config; // configFile
     public static String clientLogo = "lunarcn/lunarcn.png";
-    public static String version = "next-gen build 3";
+    public static String version = GitUtils.gitInfo.getProperty("git.build.version");
 
     public Main() {
         if (config.getConfig().isEmpty()) {
-            // 初始化值
-            config.setValue("jre", ""); // 自定义JRE
-            config.setValue("jvm-args", ""); // 自定义JVM参数
-            config.setValue("args", ""); // 自定义游戏参数
-            config.setValue("java-agents", new JsonObject()); // JavaAgents配置
+            // init values
+            config.setValue("jre", ""); // custom java runtime
+            config.setValue("jvm-args", ""); // custom jvm args
+            config.setValue("args", ""); // custom game args
+            config.setValue("java-agents", new JsonObject()); // JavaAgents config
             config.save();
         }
 
@@ -79,7 +78,9 @@ public class Main {
 
             Process process = Runtime.getRuntime().exec(execArgs.toString());
         } catch (IOException e) {
-            Gui.showErrorDialog("Game crashed!\nLunarCN只是检测到了报错, 并不能解决报错, 请勿向LunarClient提交错误报告时说明你在使用LunarCN!\n你也可以去我们的官方群组询问 -> 780154857");
+            StringWriter writer = new StringWriter();
+            e.printStackTrace(new PrintWriter(writer));
+            Gui.showErrorDialog("Launch failed!\nDon't report this to Moonsworth\n" + writer);
             return 1;
         }
         return 0;
@@ -118,7 +119,7 @@ public class Main {
             }
 
             if (!successful) {
-                throw new Throwable("没有存在的LunarClient进程");
+                throw new Throwable("Lunar Client not found");
             }
         } catch (Throwable e) {
             e.printStackTrace();

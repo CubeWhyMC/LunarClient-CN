@@ -1,10 +1,9 @@
 
 {
   "required": true,
-  "minVersion": "0.7.11",
+  "minVersion": "0.8.4",
   "package": "org.cubewhy.lunarcn.loader.user.mixins",
-  "refmap": "mixins.lunarcn.refmap.json",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MixinGuiConnecting",
     "MixinMinecraft"

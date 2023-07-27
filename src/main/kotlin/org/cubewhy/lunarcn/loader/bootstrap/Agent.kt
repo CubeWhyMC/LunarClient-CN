@@ -3,7 +3,7 @@ package org.cubewhy.lunarcn.loader.bootstrap
 import java.lang.instrument.Instrumentation
 
 @Suppress("UNUSED_PARAMETER")
-public fun premain(opt: String?, inst: Instrumentation) {
+fun premain(opt: String?, inst: Instrumentation) {
     val version = findVersion()
     if (version !in arrayOf("1.8", "1.8.9")) {
         println("[LunarCN ModLoader] $version not supported, disabling...")

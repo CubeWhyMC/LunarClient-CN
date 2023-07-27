@@ -2,12 +2,12 @@ package org.cubewhy.lunarcn.loader.hooks
 
 import org.cubewhy.lunarcn.loader.api.event.WorldEvent
 import org.cubewhy.lunarcn.loader.api.util.asm
-import org.cubewhy.lunarcn.loader.util.callEvent
-import org.cubewhy.lunarcn.loader.util.internalNameOf
+import org.cubewhy.lunarcn.loader.utils.callEvent
+import org.cubewhy.lunarcn.loader.utils.internalNameOf
 import org.objectweb.asm.tree.ClassNode
 import org.objectweb.asm.tree.LabelNode
 
-public class WorldEventHook : org.cubewhy.lunarcn.loader.api.Hook("net/minecraft/client/Minecraft") {
+class WorldEventHook : org.cubewhy.lunarcn.loader.api.Hook("net/minecraft/client/Minecraft") {
     override fun transform(node: ClassNode, cfg: AssemblerConfig) {
         node.methods.find {
             it.name == "loadWorld" && it.desc == "(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V"

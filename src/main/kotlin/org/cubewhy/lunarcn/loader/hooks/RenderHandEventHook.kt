@@ -3,7 +3,7 @@ package org.cubewhy.lunarcn.loader.hooks
 import org.cubewhy.lunarcn.loader.api.event.CancellableEvent
 import org.cubewhy.lunarcn.loader.api.event.RenderHandEvent
 import org.cubewhy.lunarcn.loader.api.util.asm
-import org.cubewhy.lunarcn.loader.util.*
+import org.cubewhy.lunarcn.loader.utils.*
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.tree.ClassNode
 import org.objectweb.asm.tree.JumpInsnNode

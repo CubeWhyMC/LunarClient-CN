@@ -1,4 +1,4 @@
-package org.cubewhy.lunarcn.loader.util
+package org.cubewhy.lunarcn.loader.utils
 
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Type

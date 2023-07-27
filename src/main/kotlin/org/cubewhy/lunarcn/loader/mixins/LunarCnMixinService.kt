@@ -22,7 +22,7 @@ import java.net.URL
  *
  * @see IMixinService
  */
-public class LunarCnMixinService : IMixinService, IClassProvider, IClassBytecodeProvider {
+class LunarCnMixinService : IMixinService, IClassProvider, IClassBytecodeProvider {
 
     /**
      * Lock used to track transformer re-entrance
