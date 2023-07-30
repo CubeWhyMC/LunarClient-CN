@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'maven-publish'
     id "com.github.johnrengelman.shadow" version "6.1.0"
     id 'org.jetbrains.kotlin.jvm' version '1.9.0'
     id 'com.github.weave-mc.weave-gradle' version 'bcf6ab0279'
@@ -7,7 +8,7 @@ plugins {
 }
 
 group = 'org.cubewhy.lunarcn'
-version = 'build4-pre1'
+version = 'build4-pre1-SNAPSHOT'
 
 minecraft.version("1.8.9") // Minecraft Version
 
@@ -21,6 +22,7 @@ configurations {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven { url = "https://repo.lunarcn.top/repository/maven-snapshots/" }
     maven { url = "https://nexus.velocitypowered.com/repository/maven-public/" }
     maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
     maven { url = "https://jitpack.io/" }
@@ -28,6 +30,8 @@ repositories {
 
 dependencies {
     include fileTree(dir: "libs", include: ["*.jar"])
+
+    include "org.cubewhy:LunarLauncherLib:1.0-20230730.095323-1"
 
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
@@ -75,4 +79,26 @@ jar {
 
 kotlin {
     jvmToolchain(17)
+}
+
+publishing {
+    publications {
+        LunarCN(MavenPublication) {
+            groupId = project.group
+            version = project.version
+
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = "LunarCN"
+            url = "https://repo.lunarcn.top/repository/maven-snapshots/"
+            credentials {
+                username System.getenv("LUNARCN_USERNAME")
+                password System.getenv("LUNARCN_PASSWORD")
+            }
+        }
+    }
 }
