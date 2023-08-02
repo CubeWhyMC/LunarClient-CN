@@ -8,9 +8,15 @@ plugins {
 }
 
 group = 'org.cubewhy.lunarcn'
-version = 'build4-pre1-SNAPSHOT'
+version = 'build4-pre2-SNAPSHOT'
 
 minecraft.version("1.8.9") // Minecraft Version
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 configurations {
     include
@@ -53,7 +59,6 @@ dependencies {
 }
 
 shadowJar {
-    // fatJar
     archiveClassifier.set("fatjar")
     configurations = [project.configurations.include, project.configurations.includeApi]
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
@@ -102,3 +107,5 @@ publishing {
         }
     }
 }
+
+jar.dependsOn(shadowJar)

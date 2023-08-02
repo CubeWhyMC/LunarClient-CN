@@ -39,8 +39,9 @@ public class Main {
         JavaAgents.init(); // 初始化JavaAgents文件夹
     }
 
-    public static void main(@NotNull String[] args) {
+    public static void main(@NotNull String[] args) throws IOException {
         config = new Config(configDir + "/config.json");
+        config.load();
         if (args.length == 0) {
             Gui.showMessageDialog("本程序无法直接双击启动, 你可以使用如下参数\n--offline 离线启动\n--inject 运行时热注入");
         } else if (args.length == 1 && args[0].equalsIgnoreCase("--offline")) {
@@ -56,6 +57,8 @@ public class Main {
                 Gui.showMessageDialog("你之前没有启动过LunarCN, 请正常启动一次LunarCN再使用此功能");
                 System.exit(1);
             }
+        } else if (args.length == 1 && args[0].equalsIgnoreCase("--no-launcher")) {
+            new Main().noLauncher(System.getProperty("version", "1.8.9"), System.getProperty("branch", "master"), System.getProperty("module", "lunar"));
         } else if (args.length == 1 && args[0].equalsIgnoreCase("--inject")) {
             System.exit(new Main().attach(args));
         } else {
@@ -86,7 +89,7 @@ public class Main {
         return 0;
     }
 
-    private void offlineLaunch(String minecraftVersion, String branch, String module) throws IOException {
+    private void noLauncher(String minecraftVersion, String branch, String module) throws IOException {
         JsonObject artifacts = LunarDownloader.getLunarArtifacts(minecraftVersion, branch, module);
         File baseDir = new File(configDir, "offline");
         MinecraftArgs mcArgs = new MinecraftArgs(mcDir.getAbsolutePath(), mcDir + "/textures", 300, 400);
