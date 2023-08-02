@@ -10,12 +10,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="maven publish">
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="de9d1c4d-c390-40c8-8a46-3cb5ab344600" name="更改" comment="launcherlib">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/cubewhy/lunarcn/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cubewhy/lunarcn/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -325,7 +321,7 @@
       <workItem from="1690711211705" duration="990000" />
       <workItem from="1690725008186" duration="139000" />
       <workItem from="1690939283489" duration="929000" />
-      <workItem from="1690940278285" duration="1111000" />
+      <workItem from="1690940278285" duration="1906000" />
     </task>
     <task id="LOCAL-00001" summary="INIT">
       <created>1685757822983</created>
@@ -454,7 +450,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690712135984</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="launcherlib">
+      <option name="closed" value="true" />
+      <created>1690941663732</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1690941663732</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,6 +494,7 @@
     <MESSAGE value="Update LunarLauncherLib" />
     <MESSAGE value="get git version" />
     <MESSAGE value="maven publish" />
-    <option name="LAST_COMMIT_MESSAGE" value="maven publish" />
+    <MESSAGE value="launcherlib" />
+    <option name="LAST_COMMIT_MESSAGE" value="launcherlib" />
   </component>
 </project>

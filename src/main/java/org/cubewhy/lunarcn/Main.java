@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
 import org.cubewhy.launcher.LunarClient;
+import org.cubewhy.launcher.LunarDir;
 import org.cubewhy.launcher.LunarDownloader;
 import org.cubewhy.launcher.game.MinecraftArgs;
 import org.cubewhy.lunarcn.files.Config;
@@ -92,7 +93,7 @@ public class Main {
     private void noLauncher(String minecraftVersion, String branch, String module) throws IOException {
         JsonObject artifacts = LunarDownloader.getLunarArtifacts(minecraftVersion, branch, module);
         File baseDir = new File(configDir, "offline");
-        MinecraftArgs mcArgs = new MinecraftArgs(mcDir.getAbsolutePath(), mcDir + "/textures", 300, 400);
+        MinecraftArgs mcArgs = new MinecraftArgs(mcDir.getAbsolutePath(), LunarDir.lunarDir + "/textures", 300, 400);
         String javaExec;
         if (config.getValue("jre").getAsString().isEmpty()) {
             javaExec = System.getProperty("java.home") + "/bin/java";
