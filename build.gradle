@@ -54,7 +54,7 @@ dependencies {
     include 'io.earcam.wrapped:com.sun.tools.attach:1.8.0_jdk8u172-b11'
 //    include 'com.github.cubewhy:LauncherLib:master-SNAPSHOT' // the Lunar LauncherLib
 
-    compileOnly 'org.apache.commons:commons-lang3:3.12.0'
+    include 'org.apache.commons:commons-lang3:3.12.0'
     compileOnly group: 'org.lwjgl.lwjgl', name: 'lwjgl', version: '2.9.4-nightly-20150209'
 }
 

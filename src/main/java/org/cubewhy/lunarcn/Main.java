@@ -3,6 +3,7 @@ package org.cubewhy.lunarcn;
 import com.google.gson.JsonObject;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
+import kotlin.io.FileTreeWalk;
 import org.cubewhy.launcher.LunarClient;
 import org.cubewhy.launcher.LunarDir;
 import org.cubewhy.launcher.LunarDownloader;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.List;
+import java.util.Objects;
 
 public class Main {
 
@@ -93,7 +95,14 @@ public class Main {
     private void noLauncher(String minecraftVersion, String branch, String module) throws IOException {
         JsonObject artifacts = LunarDownloader.getLunarArtifacts(minecraftVersion, branch, module);
         File baseDir = new File(configDir, "offline");
-        MinecraftArgs mcArgs = new MinecraftArgs(mcDir.getAbsolutePath(), LunarDir.lunarDir + "/textures", 300, 400);
+        baseDir.mkdirs(); // create dir
+        for (File file : Objects.requireNonNull(baseDir.listFiles())) {
+            if (!artifacts.has(file.getName())) {
+                // Download client
+                LunarDownloader.downloadLunarArtifacts(baseDir, artifacts);
+            }
+        }
+        MinecraftArgs mcArgs = new MinecraftArgs(mcDir.getAbsolutePath(), LunarDir.lunarDir + "/textures", 600, 400);
         String javaExec;
         if (config.getValue("jre").getAsString().isEmpty()) {
             javaExec = System.getProperty("java.home") + "/bin/java";
