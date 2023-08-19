@@ -2,6 +2,8 @@
 ![last commit](https://img.shields.io/github/last-commit/CubeWhyMC/LunarClient-CN)
 ![code size](https://img.shields.io/github/repo-size/CubeWhyMC/LunarClient-CN)
 [![Discord](https://img.shields.io/discord/1047866655033802802.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/rCqCepgWJc)
+[![Chat](https://img.shields.io/badge/Join-QQGroup1-red?logo=tencent-qq&logoColor=red)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=h47i_OrmGbUyZ2vWf1qmNsiCZ_A3iBD9&authKey=s3bGMkkKIZ%2B2qlwZfHgarrD4dwuAw0dZ7UieVWJFa%2BxM3gT5vfyUHhmNZCuzmQJS&noverify=0&group_code=780154857)
+[![Chat](https://img.shields.io/badge/Join-QQGroup2-red?logo=tencent-qq&logoColor=red)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=bxdwTj0Gzx1eroJiuLKT6fkA_qnirxCi&authKey=TgZQfMp5KE9nbkkFrNXUcZK0Ru0J%2BaRSvBy0oD7v0m%2FkoV50w4C%2B4DaB0IBM%2Bngj&noverify=0&group_code=869511162)
 [![Latest Release](https://img.shields.io/github/v/release/CubewhyMC/LunarClient-CN)](https://github.com/CubewhyMC/LunarClient-CN/release)
 [![License](https://img.shields.io/github/license/CubewhyMC/LunarClient-CN)](https://github.com/CubewhyMC/LunarClient-CN/blob/master/LICENSE)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/CubewhyMC/LunarClient-CN)](https://github.com/CubewhyMC/LunarClient-CN/actions)
