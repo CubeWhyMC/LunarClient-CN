@@ -95,7 +95,7 @@ public class Main {
         exec.append(" ");
         // add LunarCN Loader
         String loaderPath = System.getProperty("loader", null);
-        if (loaderState && loaderPath != null) {
+        if (loaderState && loaderPath != null || new File(loaderPath).exists()) {
             exec.append(new JavaAgent(loaderPath).getJvmArgs());
         }
         // add JavaAgents
