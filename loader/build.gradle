@@ -45,6 +45,7 @@ dependencies {
     includeApi 'org.ow2.asm:asm-tree:9.4'
 
     include 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
+    include 'org.apache.commons:commons-lang3:3.12.0'
 }
 
 shadowJar {
