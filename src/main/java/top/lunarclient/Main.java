@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 public class Main {
     public static final File configDir = new File(System.getProperty("configDir", System.getProperty("user.home") + "/.cubewhy" + "/lunarcn")); // 配置文件目录
     public static String os = System.getProperty("os.name");
-    public static final File launchScript = new File(configDir, (os.equals("Windows")) ? "launch.bat" : "launch.sh");
+    public static final File launchScript = new File(configDir, (os.contains("Windows")) ? "launch.bat" : "launch.sh");
 
     public static Config config = new Config(new File(configDir, "config.json")); // configFile
     public static String version = GitUtils.buildVersion;
@@ -96,7 +96,7 @@ public class Main {
         exec.append(" ");
         // add LunarCN Loader
         String loaderPath = System.getProperty("loader", null);
-        if (loaderState && loaderPath != null || new File(Objects.requireNonNull(loaderPath)).exists()) {
+        if (loaderState && loaderPath != null && new File(Objects.requireNonNull(loaderPath)).exists()) {
             exec.append(new JavaAgent(loaderPath).getJvmArgs());
         }
         // add JavaAgents
