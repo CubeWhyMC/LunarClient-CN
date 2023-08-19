@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.io.*;
 import java.text.MessageFormat;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Main {
@@ -95,7 +96,7 @@ public class Main {
         exec.append(" ");
         // add LunarCN Loader
         String loaderPath = System.getProperty("loader", null);
-        if (loaderState && loaderPath != null || new File(loaderPath).exists()) {
+        if (loaderState && loaderPath != null || new File(Objects.requireNonNull(loaderPath)).exists()) {
             exec.append(new JavaAgent(loaderPath).getJvmArgs());
         }
         // add JavaAgents
