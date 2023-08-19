@@ -56,6 +56,7 @@ public class Main {
                 }
                 FileWriter writer = new FileWriter(launchScript);
                 if (os.contains("Windows")) {
+                    writer.write(":: " + formatter.getString("script-info") + "\n");
                     writer.write("@echo off\n");
                     writer.write("cd /d " + FileUtils.getWorkingDir() + "\n");
                     writer.write(execArgs + "\n");
@@ -96,8 +97,8 @@ public class Main {
         exec.append(" ");
         // add LunarCN Loader
         String loaderPath = System.getProperty("loader", null);
-        if (loaderState && loaderPath != null && new File(Objects.requireNonNull(loaderPath)).exists()) {
-            exec.append(new JavaAgent(loaderPath).getJvmArgs());
+        if (loaderState && loaderPath != null && new File(Objects.requireNonNull(loaderPath)).isFile()) {
+            exec.append(new JavaAgent(loaderPath).getJvmArgs()).append(" ");
         }
         // add JavaAgents
         for (JavaAgent agent : javaAgents) {

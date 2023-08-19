@@ -16,7 +16,7 @@ public class JavaAgent {
     }
 
     /**
-     * 获取附加参数
+     * Get args
      * @return args
      * */
     public String getArgs() {
@@ -24,7 +24,7 @@ public class JavaAgent {
     }
 
     /**
-     * 获取JavaAgent文件
+     * Get file
      * @return file
      * */
     public File getFile() {
@@ -32,13 +32,13 @@ public class JavaAgent {
     }
 
     /**
-     * 获取实际执行时要添加的参数
+     * Get VM args
      * @return args for jvm
      * */
     public String getJvmArgs() {
         String jvmArgs = "-javaagent:\"" + this.file.getAbsolutePath() + "\"";
         if (!this.args.isEmpty()) {
-            jvmArgs += "=" + this.args;
+            jvmArgs += "=\"" + this.args + "\"";
         }
         return jvmArgs;
     }
