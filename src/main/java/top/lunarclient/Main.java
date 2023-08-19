@@ -83,7 +83,7 @@ public class Main {
         String javaExec;
         // get java executable
         if (config.getValue("jre").getAsString().isEmpty()) {
-            javaExec = System.getProperty("java.home") + ((os.contains("Windows")) ? "/bin/javaw.exe" : "/bin/java");
+            javaExec = System.getProperty("java.home") + ((os.contains("Windows")) ? "/bin/java.exe" : "/bin/java");
         } else {
             javaExec = config.getValue("jre").getAsString();
         }
