@@ -4,14 +4,21 @@
 
 ## 改变了什么
 
-1. 多版本支持
-2. 友好的配置流程
+1. 新的项目结构
+2. 支持多系统
+3. 友好的配置流程
 
 ## 使用
 
 1. 从[发行版](https://github.com/CubeWhyMC/LunarClient-CN/releases)下载版本
 2. 解压压缩包
 3. 双击Lunar Client CN.exe打开启动器
+
+## 模组(Mod)开发
+
+示例: [here](https://github.com/CubeWhyMC/LunarMod-Example)
+
+教程(英语): [Wiki](https://github.com/CubeWhyMC/LunarClient-CN/wiki/LunarCN-mod-development)
 
 ## 免责声明
 
