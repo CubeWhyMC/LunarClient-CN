@@ -9,13 +9,15 @@ import org.objectweb.asm.tree.ClassNode
 import org.spongepowered.asm.transformers.MixinClassWriter
 
 internal object HookManager : SafeTransformer {
-    var hooks: List<Hook> = {
+    var hooks: ArrayList<Hook> = run {
         val hookPackage = "org.cubewhy.lunarcn.loader.hooks"
-        val hookList = mutableListOf<Hook>()
+        val hookList = ArrayList<Hook>()
         ClassUtils.resolvePackage(hookPackage, Hook::class.java)
-            .forEach { hook -> hookList.add(hook.newInstance()) }
+            .forEach { hook ->
+                hookList.add(hook.newInstance())
+            }
         hookList
-    } as List<Hook>
+    }
 
     override fun transform(loader: ClassLoader, className: String, originalClass: ByteArray): ByteArray? {
         val hooks = hooks.filter { it.targets.contains("*") || it.targets.contains(className) }
