@@ -62,4 +62,10 @@ kotlin {
     jvmToolchain(8)
 }
 
+jar {
+    manifest.attributes(
+            "Premain-Class": "org.cubewhy.lunarcn.loader.bootstrap.AgentKt"
+    )
+}
+
 jar.dependsOn(shadowJar)
