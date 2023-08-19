@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    id "org.jetbrains.kotlin.plugin.serialization" version "1.9.0"
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id "com.gorylenko.gradle-git-properties" version "2.4.1"
+    id 'com.github.weave-mc.weave-gradle' version 'bcf6ab0279'
+}
+
+group = 'org.cubewhy.lunarcn'
+
+compileJava.options.encoding = "UTF-8"
+
+configurations {
+    include
+    includeApi
+    api.extendsFrom(includeApi)
+    implementation.extendsFrom(include)
+}
+
+minecraft {
+    version "1.8.9"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+
+repositories {
+    mavenCentral()
+    maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
+}
+
+dependencies {
+    compileOnly 'org.spongepowered:mixin:0.8.5'
+
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+    includeApi 'org.ow2.asm:asm:9.4'
+    includeApi 'org.ow2.asm:asm-util:9.4'
+    includeApi 'org.ow2.asm:asm-tree:9.4'
+
+    include 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
+}
+
+shadowJar {
+    archiveClassifier.set("fatjar")
+    configurations = [project.configurations.include]
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+
+    exclude "native-binaries/**"
+
+    exclude "LICENSE.txt"
+}
+
+
+kotlin {
+    jvmToolchain(8)
+}
+
+jar.dependsOn(shadowJar)

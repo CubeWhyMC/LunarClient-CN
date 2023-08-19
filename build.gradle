@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id "com.gorylenko.gradle-git-properties" version "2.4.1"
+}
+
+group = 'top.lunarclient'
+version = '1.0-SNAPSHOT'
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+
+
+compileJava.options.encoding = "UTF-8"
+
+configurations {
+    include
+    implementation.extendsFrom(include)
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+jar {
+    manifest.attributes(
+            "Main-Class": "top.lunarclient.Main"
+    )
+}
+
+shadowJar {
+    archiveClassifier.set("fatjar")
+    configurations = [project.configurations.include]
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+
+    exclude "native-binaries/**"
+
+    exclude "LICENSE.txt"
+}
+
+
+kotlin {
+    jvmToolchain(8)
+}
+
+jar.dependsOn(shadowJar)

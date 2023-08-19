@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "3.0.5",
+  "package": "org.cubewhy.lunarcn.loader.injection.mixins",
+  "mixins": [
+    "MixinGuiConnecting",
+    "MixinMinecraft"
+  ]
+}
