@@ -1,8 +1,8 @@
-# LunarClient CN
+# LunarClient CN [Nextgen-New]
 ![last commit](https://img.shields.io/github/last-commit/CubeWhyMC/LunarClient-CN)
 ![code size](https://img.shields.io/github/repo-size/CubeWhyMC/LunarClient-CN)
 [![Discord](https://img.shields.io/discord/1047866655033802802.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/rCqCepgWJc)
-[![Latest Release](https://img.shields.io/github/v/release/CubewhyMC/LunarClient-CN)](https://github.com/CubewhyMC/LiquidLunar/release)
+[![Latest Release](https://img.shields.io/github/v/release/CubewhyMC/LunarClient-CN)](https://github.com/CubewhyMC/LunarClient-CN/release)
 [![License](https://img.shields.io/github/license/CubewhyMC/LunarClient-CN)](https://github.com/CubewhyMC/LunarClient-CN/blob/master/LICENSE)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/CubewhyMC/LunarClient-CN)](https://github.com/CubewhyMC/LunarClient-CN/actions)
 
@@ -10,15 +10,15 @@
 
 ## 改变了什么
 
-1. 新的项目结构
-2. 支持多系统
-3. 友好的配置流程
+- 1.新的项目结构
+- 2.支持多系统
+- 3.友好的配置流程
 
 ## 使用
 
-1. 从[发行版](https://github.com/CubeWhyMC/LunarClient-CN/releases)下载版本
-2. 解压压缩包
-3. 双击Lunar Client CN.exe打开启动器
+>1. 从[发行版](https://github.com/CubeWhyMC/LunarClient-CN/releases)下载版本
+>2. 解压压缩包
+>3. 双击Lunar Client CN.exe打开启动器
 
 ## 模组(Mod)开发
 
@@ -42,7 +42,7 @@
 
 ### LunarCN与外挂
 
-LunarCN不是黑客软件, 我们不反对也不支持开挂行为, 如果你的外挂无法在LunarClient-CN加载不要在我们这里反馈, 如果你这样做, 我们将会关闭您的票
+LunarCN不是黑客软件, 我们不反对也不支持开挂行为, 如果你的外挂无法在LunarClient-CN加载不要在我们这里反馈, 如果你这样做, 我们将会关闭您的开票
 
 ### LunarCN与LiquidLunar
 
