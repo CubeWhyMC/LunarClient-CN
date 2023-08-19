@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/github/license/CubewhyMC/LunarClient-CN)](https://github.com/CubewhyMC/LunarClient-CN/blob/master/LICENSE)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/CubewhyMC/LunarClient-CN)](https://github.com/CubewhyMC/LunarClient-CN/actions)
 
-[![中文](https://img.shields.io/badge/English-Readme-green?style=flat-square)](README.md)
+[![中文](https://img.shields.io/badge/简体中文-Readme-green?style=flat-square)](README.md)
 
 ## What changed
 
