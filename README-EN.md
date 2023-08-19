@@ -16,9 +16,9 @@
 
 ## Using
 
-> 1. Download LunarCN from [Releases](https://github.com/CubeWhyMC/LunarClient-CN/releases)
-2. Do unzip
-3. Double click Lunar Client CN.exe
+>1. Download LunarCN from [Releases](https://github.com/CubeWhyMC/LunarClient-CN/releases)
+>2. Do unzip
+>3. Double click Lunar Client CN.exe
 
 ## Mod development
 
