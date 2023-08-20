@@ -79,7 +79,7 @@ object ModLoader {
                     for (line in inputStream.bufferedReader().readLines()) {
                         writeAccess(line)
                     }
-                } catch (err: IOException) {
+                } catch (err: NullPointerException) {
                     err.printStackTrace()
                     println("${jar.name} didn't have access.txt or failed to write access, so skip write access for this mod")
                 }

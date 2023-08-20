@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 public class FileUtils {
     public static  InputStream getFile(String pathToFile) {
-        return FileUtils.class.getResourceAsStream("/assets/minecraft/" + pathToFile);
+        return FileUtils.class.getResourceAsStream("/" + pathToFile);
     }
 
     public static InputStream getFile(ResourceLocation location) {

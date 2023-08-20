@@ -45,7 +45,7 @@ dependencies {
     includeApi 'org.ow2.asm:asm-tree:9.4'
 
     include 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
-    include 'org.apache.logging.log4j:log4j:2.20.0'
+    include 'org.apache.logging.log4j:log4j-core:2.0-beta9'
 
 }
 
