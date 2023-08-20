@@ -5,10 +5,12 @@ plugins {
     id "com.gorylenko.gradle-git-properties" version "2.4.1"
 }
 
-group = 'top.lunarclient'
-version = '1.0-SNAPSHOT'
-
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+
+allprojects {
+    group = 'top.lunarclient'
+    version = '1.0-SNAPSHOT'
+}
 
 
 compileJava.options.encoding = "UTF-8"
