@@ -2,22 +2,32 @@ package org.cubewhy.lunarcn.loader
 
 import org.cubewhy.lunarcn.loader.api.Hook
 import org.cubewhy.lunarcn.loader.bootstrap.SafeTransformer
-import org.cubewhy.lunarcn.loader.utils.ClassUtils
+import org.cubewhy.lunarcn.loader.hooks.*
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.tree.ClassNode
 import org.spongepowered.asm.transformers.MixinClassWriter
 
 internal object HookManager : SafeTransformer {
-    var hooks: ArrayList<Hook> = run {
-        val hookPackage = "org.cubewhy.lunarcn.loader.hooks"
-        val hookList = ArrayList<Hook>()
-        ClassUtils.resolvePackage(hookPackage, Hook::class.java)
-            .forEach { hook ->
-                hookList.add(hook.newInstance())
-            }
-        hookList
-    }
+    var hooks = mutableListOf(
+    ChatReceivedEventHook(),
+    ChatSentEventHook(),
+    EntityListEventAddHook(), EntityListEventRemoveHook(),
+    GuiOpenEventHook(),
+    KeyboardEventHook(),
+    MouseEventHook(),
+    PlayerListEventHook(),
+    RenderGameOverlayHook(),
+    RenderHandEventHook(),
+    RenderLivingEventHook(),
+    RenderWorldEventHook(),
+    ServerConnectEventHook(),
+    ShutdownEventHook(),
+    StartGameEventHook(),
+    TickEventHook(),
+    WorldEventHook(),
+    PacketEventHook()
+    )
 
     override fun transform(loader: ClassLoader, className: String, originalClass: ByteArray): ByteArray? {
         val hooks = hooks.filter { it.targets.contains("*") || it.targets.contains(className) }
