@@ -13,4 +13,5 @@ pluginManagement {
 }
 rootProject.name = 'LunarCN-NextGen'
 include 'loader'
+include 'struct'
 
