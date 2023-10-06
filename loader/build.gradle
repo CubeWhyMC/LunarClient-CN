@@ -41,6 +41,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
 
     includeApi 'org.ow2.asm:asm:9.4'
+    includeApi 'org.ow2.asm:asm-commons:9.4'
     includeApi 'org.ow2.asm:asm-util:9.4'
     includeApi 'org.ow2.asm:asm-tree:9.4'
 

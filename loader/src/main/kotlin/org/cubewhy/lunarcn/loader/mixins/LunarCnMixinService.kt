@@ -1,6 +1,8 @@
 package org.cubewhy.lunarcn.loader.mixins
 
+import org.cubewhy.lunarcn.loader.mapping.XSrgMapper
 import org.objectweb.asm.ClassReader
+import org.objectweb.asm.commons.ClassRemapper
 import org.objectweb.asm.tree.ClassNode
 import org.spongepowered.asm.launch.platform.container.ContainerHandleVirtual
 import org.spongepowered.asm.launch.platform.container.IContainerHandle
@@ -39,13 +41,17 @@ class LunarCnMixinService : IMixinService, IClassProvider, IClassBytecodeProvide
             private set
     }
 
+    private val remapper = XSrgMapper("/lunar/lunar_named_b5_1.8.9.xsrg")
+    private val classCache = mutableMapOf<String, ClassNode>()
+    private val isOldClient = System.getProperty("lunarcn.old", "false") == "true"
+
     private val genesisClassCache by lazy {
         this.javaClass.classLoader.javaClass
             .declaredFields
             .find { Map::class.java.isAssignableFrom(it.type) }!!
             .also { it.isAccessible = true }
             .get(this.javaClass.classLoader)
-            as Map<String, ByteArray>
+                as Map<String, ByteArray>
     }
 
     /**
@@ -220,32 +226,6 @@ class LunarCnMixinService : IMixinService, IClassProvider, IClassBytecodeProvide
     override fun findAgentClass(name: String?, initialize: Boolean): Class<*> =
         findClass(name, initialize)
 
-    /*
-     * IClassBytecodeProvider
-     */
-
-    /**
-     * Retrieves a transformed class as an ASM tree.
-     *
-     * @param name The full class name.
-     * @return The resultant class tree.
-     */
-    override fun getClassNode(name: String): ClassNode {
-        val canonicalName = name.replace('/', '.')
-        val internalName = name.replace('.', '/')
-
-        try {
-            val bytes = genesisClassCache[canonicalName]
-                ?: this.javaClass.classLoader.getResourceAsStream("$internalName.class")!!.readBytes()
-
-            val cn = ClassNode()
-            ClassReader(bytes).accept(cn, ClassReader.EXPAND_FRAMES)
-            return cn
-        } catch (ex: IOException) {
-            throw ClassNotFoundException(canonicalName, ex)
-        }
-    }
-
     /**
      * Retrieves a transformed class as an ASM tree.
      *
@@ -255,4 +235,43 @@ class LunarCnMixinService : IMixinService, IClassProvider, IClassBytecodeProvide
      */
     override fun getClassNode(name: String, runTransformers: Boolean): ClassNode =
         getClassNode(name)
+
+    /*
+ * IClassBytecodeProvider
+ */
+
+    /**
+     * Retrieves a transformed class as an ASM tree.
+     *
+     * @param name The full class name.
+     * @return The resultant class tree.
+     */
+    override fun getClassNode(name: String): ClassNode {
+        if (isOldClient) {
+            // Artifact build date before 2023/8/10
+            val canonicalName = name.replace('/', '.')
+            val internalName = name.replace('.', '/')
+
+            try {
+                val bytes = genesisClassCache[canonicalName]
+                    ?: this.javaClass.classLoader.getResourceAsStream("$internalName.class")!!.readBytes()
+
+                val cn = ClassNode()
+                ClassReader(bytes).accept(cn, ClassReader.EXPAND_FRAMES)
+                return cn
+            } catch (ex: IOException) {
+                throw ClassNotFoundException(canonicalName, ex)
+            }
+        } else {
+            return this.classCache.computeIfAbsent(remapper.mapReverse(name.replace('.', '/'))) {
+                val bytes = this.javaClass.classLoader.getResourceAsStream("$it.class")!!
+                val cn = ClassNode()
+                ClassReader(bytes).accept(
+                    ClassRemapper(cn, this.remapper),
+                    ClassReader.EXPAND_FRAMES
+                )
+                cn
+            }
+        }
+    }
 }
