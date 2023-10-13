@@ -4,10 +4,14 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
+import org.cubewhy.lunarcn.loader.api.Hook
 import org.cubewhy.lunarcn.loader.api.ModInitializer
+import org.cubewhy.lunarcn.loader.api.SubscribeHook
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinService
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinTransformer
 import org.cubewhy.lunarcn.loader.utils.AccessWriter
+import org.cubewhy.lunarcn.loader.utils.ClassUtils
+import org.cubewhy.lunarcn.loader.utils.GitUtils
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Opcodes
@@ -16,7 +20,6 @@ import org.spongepowered.asm.mixin.MixinEnvironment
 import org.spongepowered.asm.mixin.Mixins
 import org.spongepowered.asm.service.MixinService
 import java.io.File
-import java.io.IOException
 import java.lang.instrument.Instrumentation
 import java.nio.file.Files
 import java.nio.file.Path
@@ -26,9 +29,12 @@ import javax.swing.JOptionPane
 import kotlin.io.path.*
 
 object ModLoader {
-    const val clientLogo = "assets/minecraft/lunarcn/lunarcn.png"
+    val clientLogo = "assets/minecraft/lunarcn/lunarcn.png"
+
     @JvmStatic
     val configDir: File = File(System.getProperty("configPath", System.getProperty("user.home") + "/.cubewhy/lunarcn"))
+    val initializers = mutableListOf<ModInitializer>()
+
     /**
      * @see [org.cubewhy.lunarcn.loader.bootstrap.premain]
      */
@@ -36,6 +42,7 @@ object ModLoader {
     @OptIn(ExperimentalSerializationApi::class)
     fun init(inst: Instrumentation) {
         println("[LunarCN Loader] Initializing LunarCN - based on Weave Loader")
+        println("[LunarCN Loader] Star us on GitHub: ${GitUtils.remote}")
 
         MixinBootstrap.init() // Init mixin
 
@@ -47,7 +54,6 @@ object ModLoader {
         inst.addTransformer(LunarCnMixinTransformer)
         inst.addTransformer(HookManager)
 
-        val initializers = mutableListOf<ModInitializer>()
         val json = Json { ignoreUnknownKeys = true }
         getOrCreateModDirectory()
             .listDirectoryEntries("*.jar")
@@ -59,7 +65,7 @@ object ModLoader {
                     JOptionPane.showMessageDialog(
                         null,
                         "${jar.name} maybe a Weave mod, lunarCN Loader may failed to load this mod",
-                        "Warning",
+                        "LunarCN | Warning",
                         JOptionPane.WARNING_MESSAGE
                     )
                 }
@@ -69,7 +75,15 @@ object ModLoader {
                 val config = json.decodeFromStream<ModConfig>(jar.getInputStream(configEntry))
 
                 config.mixinConfigs.forEach(Mixins::addConfiguration)
+                // Old hooks config
                 HookManager.hooks += config.hooks.map(ModLoader::instantiate)
+                // New hooks config
+                HookManager.hooks += ClassUtils.searchClassesByAnnotation(
+                    SubscribeHook::class.java,
+                    Hook::class.java,
+                    config.hookPackage
+                )
+                // entrys
                 initializers += config.entrypoints.map(ModLoader::instantiate)
 
                 // write access for LunarClient
@@ -86,7 +100,7 @@ object ModLoader {
             }
 
         //call preInit after all hooks/mixins are added
-        initializers.forEach { it.preInit() }
+        initializers.forEach { it.onPreInit() }
 
         println("[LunarCN Loader] Load finished")
     }
@@ -95,6 +109,7 @@ object ModLoader {
     private data class ModConfig(
         val mixinConfigs: List<String> = listOf(),
         val hooks: List<String> = listOf(),
+        val hookPackage: String = "",
         val entrypoints: List<String>
     )
 

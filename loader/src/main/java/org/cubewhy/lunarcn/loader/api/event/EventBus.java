@@ -17,7 +17,7 @@ public class EventBus {
 
     public void subscribe(Object obj) {
         for (Method method : obj.getClass().getDeclaredMethods()) {
-            if (method.isAnnotationPresent(SubscribeEvent.class) && method.getParameterCount() == 1) {
+            if (method.isAnnotationPresent(EventTarget.class) && method.getParameterCount() == 1) {
                 getListeners(method.getParameterTypes()[0]).add(new ReflectEventConsumer(obj, method));
             }
         }

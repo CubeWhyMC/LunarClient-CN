@@ -1,5 +1,9 @@
 package org.cubewhy.lunarcn.loader.api
 
 interface ModInitializer {
-    fun preInit()
+    fun onPreInit()
+    fun onInit()
+    fun onStart()
+    fun onCrash()
+    fun onStop()
 }

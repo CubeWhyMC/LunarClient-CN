@@ -1,6 +1,7 @@
 package org.cubewhy.lunarcn.loader.hooks
 
 import org.cubewhy.lunarcn.loader.api.Hook
+import org.cubewhy.lunarcn.loader.api.SubscribeHook
 import org.cubewhy.lunarcn.loader.api.event.EntityListEvent
 import org.cubewhy.lunarcn.loader.api.util.asm
 import org.cubewhy.lunarcn.loader.utils.callEvent
