@@ -17,7 +17,6 @@ abstract class Event
 abstract class CancellableEvent : Event() {
     @get:JvmName("isCancelled")
     var cancelled: Boolean = false
-
 }
 
 sealed class TickEvent : Event() {

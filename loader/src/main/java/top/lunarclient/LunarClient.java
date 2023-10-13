@@ -33,7 +33,7 @@ public class LunarClient {
     }
 
     public void onCrash(CrashReport crashReportIn) {
-        ModLoader.INSTANCE.getInitializers().forEach(ModInitializer::onCrash);
+        ModLoader.INSTANCE.getInitializers().forEach(it -> it.onCrash(crashReportIn)); // call mod's crash event
         String message = crashReportIn.getCauseStackTraceOrString();
         JOptionPane.showMessageDialog(null, "Game crashed!\n" +
                         "\nDon't report this to Moonsworth\n" +

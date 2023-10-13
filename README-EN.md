@@ -6,6 +6,10 @@
 2. Multi-version support
 3. Friendly config
 
+## Why choice LunarCN Client
+
+See [Why choice LunarCN](help/why-lunarcn.md) (Chinese)
+
 ## Using
 
 1. Download LunarCN from [Releases](https://github.com/CubeWhyMC/LunarClient-CN/releases)
