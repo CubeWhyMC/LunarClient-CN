@@ -39,7 +39,6 @@ object ModLoader {
      * @see [org.cubewhy.lunarcn.loader.bootstrap.premain]
      */
     @JvmStatic
-    @OptIn(ExperimentalSerializationApi::class)
     fun init(inst: Instrumentation) {
         println("[LunarCN Loader] Initializing LunarCN - based on Weave Loader")
         println("[LunarCN Loader] Star us on GitHub: ${GitUtils.remote}")
@@ -54,50 +53,11 @@ object ModLoader {
         inst.addTransformer(LunarCnMixinTransformer)
         inst.addTransformer(HookManager)
 
-        val json = Json { ignoreUnknownKeys = true }
         getOrCreateModDirectory()
             .listDirectoryEntries("*.jar")
             .filter { it.isRegularFile() }
             .map { JarFile(it.toFile()).also(inst::appendToSystemClassLoaderSearch) }
-            .forEach { jar ->
-                println("[LunarCN Loader] Loading mod ${jar.name}")
-                if (jar.getEntry("weave.mod.json") != null) {
-                    JOptionPane.showMessageDialog(
-                        null,
-                        "${jar.name} maybe a Weave mod, lunarCN Loader may failed to load this mod",
-                        "LunarCN | Warning",
-                        JOptionPane.WARNING_MESSAGE
-                    )
-                }
-
-                val configEntry =
-                    jar.getEntry("lunarcn.mod.json") ?: error("${jar.name} does not contain a lunarcn.mod.json!")
-                val config = json.decodeFromStream<ModConfig>(jar.getInputStream(configEntry))
-
-                config.mixinConfigs.forEach(Mixins::addConfiguration)
-                // Old hooks config
-                HookManager.hooks += config.hooks.map(ModLoader::instantiate)
-                // New hooks config
-                HookManager.hooks += ClassUtils.searchClassesByAnnotation(
-                    SubscribeHook::class.java,
-                    Hook::class.java,
-                    config.hookPackage
-                )
-                // entrys
-                initializers += config.entrypoints.map(ModLoader::instantiate)
-
-                // write access for LunarClient
-                try {
-                    val accessFileEntry = jar.getEntry("access.txt")
-                    val inputStream = jar.getInputStream(accessFileEntry)
-                    for (line in inputStream.bufferedReader().readLines()) {
-                        writeAccess(line)
-                    }
-                } catch (err: NullPointerException) {
-                    err.printStackTrace()
-                    println("${jar.name} didn't have access.txt or failed to write access, so skip write access for this mod")
-                }
-            }
+            .forEach(::loadMod)
 
         //call preInit after all hooks/mixins are added
         initializers.forEach { it.onPreInit() }
@@ -113,7 +73,49 @@ object ModLoader {
         val entrypoints: List<String>
     )
 
-    private fun writeAccess(line: String) {
+    @OptIn(ExperimentalSerializationApi::class)
+    fun loadMod(jar: JarFile) {
+        val json = Json { ignoreUnknownKeys = true }
+        println("[LunarCN Loader] Loading mod ${jar.name}")
+        if (jar.getEntry("weave.mod.json") != null) {
+            JOptionPane.showMessageDialog(
+                null,
+                "${jar.name} maybe a Weave mod, lunarCN Loader may failed to load this mod",
+                "LunarCN | Warning",
+                JOptionPane.WARNING_MESSAGE
+            )
+        }
+
+        val configEntry =
+            jar.getEntry("lunarcn.mod.json") ?: error("${jar.name} does not contain a lunarcn.mod.json!")
+        val config = json.decodeFromStream<ModConfig>(jar.getInputStream(configEntry))
+
+        config.mixinConfigs.forEach(Mixins::addConfiguration)
+        // Old hooks config
+        HookManager.hooks += config.hooks.map(ModLoader::instantiate)
+        // New hooks config
+        HookManager.hooks += ClassUtils.searchClassesByAnnotation(
+            SubscribeHook::class.java,
+            Hook::class.java,
+            config.hookPackage
+        )
+        // entries
+        initializers += config.entrypoints.map(ModLoader::instantiate)
+
+        // write access for LunarClient
+        try {
+            val accessFileEntry = jar.getEntry("access.txt")
+            val inputStream = jar.getInputStream(accessFileEntry)
+            for (line in inputStream.bufferedReader().readLines()) {
+                writeAccess(line)
+            }
+        } catch (err: NullPointerException) {
+            err.printStackTrace()
+            println("${jar.name} didn't have access.txt or failed to write access, so skip write access for this mod")
+        }
+    }
+
+    fun writeAccess(line: String) {
         val code = line.split("#")[0]
         if (code.startsWith("#")) {
             return // this line is a comment
@@ -147,7 +149,7 @@ object ModLoader {
      *
      * @return The 'mods' directory: `"~/.cubewhy/lunarcn/mods"`
      */
-    private fun getOrCreateModDirectory(): Path {
+    fun getOrCreateModDirectory(): Path {
         val dir = Paths.get(configDir.path + "/mods")
         if (dir.exists() && !dir.isDirectory()) Files.delete(dir)
         if (!dir.exists()) dir.createDirectories()
