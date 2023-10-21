@@ -91,7 +91,7 @@ object ModLoader {
         val config = json.decodeFromStream<ModConfig>(jar.getInputStream(configEntry))
 
         config.mixinConfigs.forEach(Mixins::addConfiguration)
-        // Old hooks config
+        // Old hooks config (remove in 1.4)
         HookManager.hooks += config.hooks.map(ModLoader::instantiate)
         // New hooks config
         HookManager.hooks += ClassUtils.searchClassesByAnnotation(

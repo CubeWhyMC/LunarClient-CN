@@ -1,8 +1,6 @@
 package org.cubewhy.lunarcn.loader.utils
 
 import org.apache.logging.log4j.core.config.plugins.ResolverUtil
-import org.cubewhy.lunarcn.loader.api.Hook
-import org.cubewhy.lunarcn.loader.api.SubscribeHook
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.tree.ClassNode
