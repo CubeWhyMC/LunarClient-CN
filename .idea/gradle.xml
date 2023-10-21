@@ -9,7 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/loader" />
-            <option value="$PROJECT_DIR$/struct" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -2,7 +2,6 @@ package org.cubewhy.lunarcn.loader.injection.mixins;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
-import org.cubewhy.lunarcn.loader.utils.GitUtils;
 import org.cubewhy.lunarcn.utils.FileUtils;
 import org.cubewhy.lunarcn.utils.ImageUtils;
 import org.lwjgl.opengl.Display;
@@ -14,12 +13,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.lunarclient.LunarClient;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import static org.cubewhy.lunarcn.loader.ModLoader.clientLogo;
+import static org.cubewhy.lunarcn.loader.ModLoader.CLIENT_LOGO;
 import static top.lunarclient.LunarClient.logger;
 
 @Mixin(Minecraft.class)
@@ -41,7 +39,7 @@ public class MixinMinecraft {
     @Overwrite
     public void setWindowIcon() {
         try {
-            BufferedImage image = ImageIO.read(FileUtils.getFile(clientLogo));
+            BufferedImage image = ImageIO.read(FileUtils.getFile(CLIENT_LOGO));
             ByteBuffer bytebuffer = ImageUtils.readImageToBuffer(ImageUtils.resizeImage(image, 16, 16));
             Display.setIcon(new ByteBuffer[]{
                     bytebuffer,

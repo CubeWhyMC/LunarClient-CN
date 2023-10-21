@@ -29,7 +29,7 @@ import javax.swing.JOptionPane
 import kotlin.io.path.*
 
 object ModLoader {
-    val clientLogo = "assets/minecraft/lunarcn/lunarcn.png"
+    const val CLIENT_LOGO = "assets/minecraft/lunarcn/lunarcn.png"
 
     @JvmStatic
     val configDir: File = File(System.getProperty("configPath", System.getProperty("user.home") + "/.cubewhy/lunarcn"))
