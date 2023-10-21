@@ -1,6 +1,6 @@
 pluginManagement {
     repositories {
-        mavenCentral()
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
         gradlePluginPortal()
         maven {
             name = 'JitPack'
@@ -11,7 +11,6 @@ pluginManagement {
         id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
     }
 }
-rootProject.name = 'LunarCN-NextGen'
+rootProject.name = 'LunarClient-CN'
 include 'loader'
-include 'struct'
 

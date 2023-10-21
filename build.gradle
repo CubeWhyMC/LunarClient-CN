@@ -10,6 +10,13 @@ println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getPro
 allprojects {
     group = 'top.lunarclient'
     version = '1.2-SNAPSHOT'
+
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        mavenCentral()
+    }
 }
 
 
@@ -24,10 +31,6 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(8)
     }
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
