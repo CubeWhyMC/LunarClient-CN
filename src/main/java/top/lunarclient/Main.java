@@ -12,9 +12,7 @@ import top.lunarclient.utils.GitUtils;
 import javax.swing.*;
 import java.io.*;
 import java.text.MessageFormat;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Main {
     public static final File configDir = new File(System.getProperty("configDir", System.getProperty("user.home") + "/.cubewhy" + "/lunarcn")); // 配置文件目录
@@ -25,6 +23,24 @@ public class Main {
     public static String version = GitUtils.buildVersion;
     public static Locale locale = Locale.getDefault();
     public static ResourceBundle formatter = ResourceBundle.getBundle("launcher", locale);
+    public static List<String> javaDefaultProp = new ArrayList<>(
+            List.of(new String[]
+                    {"java.specification.version", "sun.cpu.isalist",
+                            "sun.jnu.encoding", "java.class.path",
+                            "java.vm.vendor", "sun.arch.data.model",
+                            "user.variant", "java.vendor.url",
+                            "user.country.format", "java.vm.specification.version",
+                            "os.name", "sun.java.launcher", "user.country", "sun.boot.library.path",
+                            "sun.java.command", "jdk.debug", "sun.cpu.endian", "user.home", "user.language",
+                            "java.specification.vendor", "java.version.date", "java.home", "file.separator",
+                            "java.vm.compressedOopsMode", "line.separator", "java.vm.specification.vendor",
+                            "java.specification.name", "user.script", "sun.management.compiler", "java.runtime.version",
+                            "user.name", "path.separator", "os.version", "java.runtime.name", "file.encoding", "java.vm.name",
+                            "java.vendor.version", "java.vendor.url.bug", "java.io.tmpdir", "java.version", "user.dir", "os.arch",
+                            "java.vm.specification.name", "user.language.format", "sun.os.patch.level", "native.encoding",
+                            "java.library.path", "java.vm.info", "java.vendor", "java.vm.version", "sun.io.unicode.encoding",
+                            "java.class.version",
+                    }));
     public static String userLanguage = locale.getLanguage();
 
     public static void main(String[] args) throws IOException {
@@ -104,6 +120,14 @@ public class Main {
         if (loaderState && loaderPath != null && new File(Objects.requireNonNull(loaderPath)).isFile()) {
             exec.append(new JavaAgent(loaderPath).getJvmArgs()).append(" ");
         }
+        // join prop
+        System.getProperties().forEach((k, v) -> {
+            for (String item : javaDefaultProp) {
+                if (item.equals(k)) {
+                    exec.append("-D").append(k).append("=").append("\"").append(v).append("\"").append(" ");
+                }
+            }
+        });
         // add JavaAgents
         for (JavaAgent agent : javaAgents) {
             exec.append(agent.getJvmArgs()).append(" ");

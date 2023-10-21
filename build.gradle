@@ -29,7 +29,7 @@ configurations {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -56,7 +56,7 @@ shadowJar {
 
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(17)
 }
 
 jar.dependsOn(shadowJar)
