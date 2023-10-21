@@ -37,6 +37,7 @@ public class LunarClient {
         String message = crashReportIn.getCauseStackTraceOrString();
         JOptionPane.showMessageDialog(null, "Game crashed!\n" +
                         "\nDon't report this to Moonsworth\n" +
+                        "Error dumped: " + crashReportIn.getFile().getPath() + "\n" +
                         "Please create a issue: \n" + GitUtils.remote.toString().split("\\.git")[0] + "/issues/new\n" +
                         "Please make a screenshot of this screen and send it to developers\n"
                         + message,

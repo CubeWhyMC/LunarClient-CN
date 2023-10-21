@@ -52,6 +52,7 @@ public class MixinMinecraft {
 
     @Inject(method = "displayCrashReport", at = @At(value = "INVOKE", target = "Lnet/minecraft/crash/CrashReport;getFile()Ljava/io/File;"))
     public void displayCrashReport(CrashReport crashReportIn, CallbackInfo ci) {
+        System.out.println("[LunarCN] err saved: " + crashReportIn.getFile().getPath());
         LunarClient.getInstance().onCrash(crashReportIn);
     }
 
