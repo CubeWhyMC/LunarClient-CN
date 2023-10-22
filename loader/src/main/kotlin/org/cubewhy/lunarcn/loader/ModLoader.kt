@@ -7,6 +7,7 @@ import kotlinx.serialization.json.decodeFromStream
 import org.cubewhy.lunarcn.loader.api.Hook
 import org.cubewhy.lunarcn.loader.api.ModInitializer
 import org.cubewhy.lunarcn.loader.api.SubscribeHook
+import org.cubewhy.lunarcn.loader.bootstrap.AccessTransformer
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinService
 import org.cubewhy.lunarcn.loader.mixins.LunarCnMixinTransformer
 import org.cubewhy.lunarcn.loader.utils.AccessWriter
@@ -24,12 +25,15 @@ import java.lang.instrument.Instrumentation
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import java.util.HashMap
 import java.util.jar.JarFile
 import javax.swing.JOptionPane
 import kotlin.io.path.*
 
 object ModLoader {
     const val CLIENT_LOGO = "assets/minecraft/lunarcn/lunarcn.png"
+    private val regex = Regex("^[\\s\\S]*_at\\.(cfg)\$")
+    private val classMap = HashMap<String, ByteArray>();
 
     @JvmStatic
     val configDir: File = File(System.getProperty("configPath", System.getProperty("user.home") + "/.cubewhy/lunarcn"))
@@ -59,7 +63,11 @@ object ModLoader {
             .map { JarFile(it.toFile()).also(inst::appendToSystemClassLoaderSearch) }
             .forEach(::loadMod)
 
-        //call preInit after all hooks/mixins are added
+
+        // apply access for client
+        inst.addTransformer(AccessTransformer(classMap))
+
+        // call preInit after all hooks/mixins are added
         initializers.forEach { it.onPreInit() }
 
         println("[LunarCN Loader] Load finished")
@@ -91,7 +99,7 @@ object ModLoader {
         val config = json.decodeFromStream<ModConfig>(jar.getInputStream(configEntry))
 
         config.mixinConfigs.forEach(Mixins::addConfiguration)
-        // Old hooks config (remove in 1.4)
+        // Old hooks config (will remove in 1.4)
         HookManager.hooks += config.hooks.map(ModLoader::instantiate)
         // New hooks config
         HookManager.hooks += ClassUtils.searchClassesByAnnotation(
@@ -99,15 +107,18 @@ object ModLoader {
             Hook::class.java,
             config.hookPackage
         )
+        println("[LunarCN] Added ${HookManager.hooks.size} hooks from jar ${jar.name}")
         // entries
         initializers += config.entrypoints.map(ModLoader::instantiate)
 
         // write access for LunarClient
+        // Same as forge (since 1.4+)
         try {
-            val accessFileEntry = jar.getEntry("access.txt")
-            val inputStream = jar.getInputStream(accessFileEntry)
-            for (line in inputStream.bufferedReader().readLines()) {
-                writeAccess(line)
+            for (entry in jar.entries()) if (entry.name.startsWith("META-INF") and regex.matches(entry.name)) {
+                val inputStream = jar.getInputStream(entry)
+                for (line in inputStream.bufferedReader().readLines()) {
+                    writeAccess(line) // parse line
+                }
             }
         } catch (err: NullPointerException) {
             err.printStackTrace()
@@ -122,25 +133,34 @@ object ModLoader {
         }
         val accessCode = code.split(" ")[0]
         val target = code.split(" ")[1]
-        var opCodeAccess: Int = Opcodes.ACC_PUBLIC
         println("Writing access ($accessCode) -> $target")
-        when (accessCode) {
+        val opCodeAccess: Int = when (accessCode) {
             "public" -> {
-                opCodeAccess = Opcodes.ACC_PUBLIC
+                Opcodes.ACC_PUBLIC
             }
 
             "private" -> {
-                opCodeAccess = Opcodes.ACC_PRIVATE
+                Opcodes.ACC_PRIVATE
             }
 
             "protected" -> {
-                opCodeAccess = Opcodes.ACC_PROTECTED
+                Opcodes.ACC_PROTECTED
+            }
+
+            "public-f" -> {
+                Opcodes.ACC_PUBLIC + Opcodes.ACC_FINAL
+            }
+
+            else -> {
+                throw Exception("[LunarCN] Unknown Access code: $accessCode")
             }
         }
         val cr = ClassReader(target.replace(".", "/"))
         val cw = ClassWriter(0)
         val writer = AccessWriter(opCodeAccess, cw)
         cr.accept(writer, ClassReader.SKIP_DEBUG) // write access
+        val bytes = cw.toByteArray()
+        classMap[target] = bytes
     }
 
     /**
