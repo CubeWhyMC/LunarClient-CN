@@ -121,13 +121,13 @@ public class Main {
             exec.append(new JavaAgent(loaderPath).getJvmArgs()).append(" ");
         }
         // join prop
-        System.getProperties().forEach((k, v) -> {
-            for (String item : javaDefaultProp) {
-                if (!item.equals(k)) {
-                    exec.append("-D").append(k).append("=").append("\"").append(v).append("\"").append(" ");
-                }
-            }
-        });
+//        System.getProperties().forEach((k, v) -> {
+//            for (String item : javaDefaultProp) {
+//                if (!item.equals(k)) {
+//                    exec.append("-D").append(k).append("=").append("\"").append(v).append("\"").append(" ");
+//                }
+//            }
+//        });
         // add JavaAgents
         for (JavaAgent agent : javaAgents) {
             exec.append(agent.getJvmArgs()).append(" ");
