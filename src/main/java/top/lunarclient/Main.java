@@ -123,7 +123,7 @@ public class Main {
         // join prop
         System.getProperties().forEach((k, v) -> {
             for (String item : javaDefaultProp) {
-                if (item.equals(k)) {
+                if (!item.equals(k)) {
                     exec.append("-D").append(k).append("=").append("\"").append(v).append("\"").append(" ");
                 }
             }
