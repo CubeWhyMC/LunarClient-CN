@@ -30,10 +30,12 @@ import java.util.jar.JarFile
 import javax.swing.JOptionPane
 import kotlin.io.path.*
 
-object ModLoader {
+internal object ModLoader {
     const val CLIENT_LOGO = "assets/minecraft/lunarcn/lunarcn.png"
     private val regex = Regex("^[\\s\\S]*_at\\.(cfg)\$")
     private val classMap = HashMap<String, ByteArray>();
+    lateinit var instrumentation: Instrumentation
+
 
     @JvmStatic
     val configDir: File = File(System.getProperty("configPath", System.getProperty("user.home") + "/.cubewhy/lunarcn"))
@@ -44,6 +46,7 @@ object ModLoader {
      */
     @JvmStatic
     fun init(inst: Instrumentation) {
+        instrumentation = inst // for global use
         println("[LunarCN Loader] Initializing LunarCN - based on Weave Loader")
         println("[LunarCN Loader] Star us on GitHub: ${GitUtils.remote}")
 

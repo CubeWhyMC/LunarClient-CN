@@ -1,3 +1,9 @@
+/*
+LunarCN Client
+Developed by cubewhy and contributors
+License with GPLv3
+https://github.com/CubeWhyMC/LunarClient-CN
+* */
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.9.0'
@@ -9,7 +15,7 @@ println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getPro
 
 allprojects {
     group = 'top.lunarclient'
-    version = '1.4-SNAPSHOT'
+    version = '1.4-pre1'
 
     repositories {
         maven { url = 'https://maven.aliyun.com/repository/google' }

@@ -2,6 +2,7 @@ package org.cubewhy.lunarcn.loader.api;
 
 import org.cubewhy.lunarcn.loader.ModLoader;
 
+import java.lang.instrument.Instrumentation;
 import java.nio.file.Path;
 import java.util.jar.JarFile;
 
@@ -20,15 +21,17 @@ public class OpenLoader {
 
     /**
      * Get mod folder
+     * @return path of ModFolder
      * */
     public static Path getModFolder() {
         return ModLoader.INSTANCE.getOrCreateModDirectory();
     }
 
     /**
-     * Write access for LunarClient instance
+     * Get the instrumentation instance
+     * @return inst
      * */
-    public static void writeAccess(String code) {
-        ModLoader.INSTANCE.writeAccess(code);
+    public static Instrumentation getInstrumentation() {
+        return ModLoader.instrumentation;
     }
 }
