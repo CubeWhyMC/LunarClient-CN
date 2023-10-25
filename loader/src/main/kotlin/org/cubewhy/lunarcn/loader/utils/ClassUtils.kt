@@ -12,7 +12,7 @@ object ClassUtils {
         val list = mutableListOf<T>()
         classes.forEach {
             if (it.getAnnotation(annotation) != null) {
-                list.add(it.newInstance())
+                list.add(it.getConstructor().newInstance())
             }
         }
         return list

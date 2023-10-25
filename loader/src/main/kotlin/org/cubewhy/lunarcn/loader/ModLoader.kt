@@ -81,7 +81,7 @@ internal object ModLoader {
         val mixinConfigs: List<String> = listOf(),
         val hooks: List<String> = listOf(),
         val hookPackage: String = "",
-        val entrypoints: List<String>
+        val entrypoints: List<String> = listOf()
     )
 
     @OptIn(ExperimentalSerializationApi::class)
@@ -102,9 +102,7 @@ internal object ModLoader {
         val config = json.decodeFromStream<ModConfig>(jar.getInputStream(configEntry))
 
         config.mixinConfigs.forEach(Mixins::addConfiguration)
-        // Old hooks config (will remove in 1.4)
-        HookManager.hooks += config.hooks.map(ModLoader::instantiate)
-        // New hooks config
+        // hooks
         HookManager.hooks += ClassUtils.searchClassesByAnnotation(
             SubscribeHook::class.java,
             Hook::class.java,
