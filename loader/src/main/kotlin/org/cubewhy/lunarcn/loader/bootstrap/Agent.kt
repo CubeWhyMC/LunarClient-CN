@@ -6,7 +6,7 @@ import java.lang.instrument.Instrumentation
 fun premain(opt: String?, inst: Instrumentation) {
     val version = findVersion()
     if (version !in arrayOf("1.8", "1.8.9")) {
-        println("[LunarCN ModLoader] $version not supported, disabling...")
+        println("[LunarCN]] $version not supported, disabling ModLoader...")
         return
     }
 

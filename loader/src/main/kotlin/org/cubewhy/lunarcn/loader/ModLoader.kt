@@ -127,7 +127,7 @@ internal object ModLoader {
         }
     }
 
-    fun writeAccess(line: String) {
+    private fun writeAccess(line: String) {
         val code = line.split("#")[0]
         if (code.startsWith("#")) {
             return // this line is a comment

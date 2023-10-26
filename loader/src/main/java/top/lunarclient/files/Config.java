@@ -17,6 +17,7 @@ public class Config {
     }
 
     public Config(File configFile) {
+        // why I'm doing same work
         this.configFile = configFile;
         this.load();
     }
@@ -98,5 +99,12 @@ public class Config {
         return this;
     }
 
+    public File getConfigFile() {
+        return configFile;
+    }
 
+
+    public JsonObject getConfig() {
+        return config;
+    }
 }

@@ -33,11 +33,11 @@ public class JavaAgents {
     }
 
     public static String getAgentArg(String agentName) {
-        if (!config.getConfig().getAsJsonObject("java-agents").has(agentName)) {
-            JsonObject agentConfig = config.getConfig().getAsJsonObject("java-agents");
+        if (!config.getValue("java-agents").getAsJsonObject().has(agentName)) {
+            JsonObject agentConfig = config.getValue("java-agents").getAsJsonObject();
             agentConfig.addProperty(agentName, "");
             config.setValue("java-agents", agentConfig);
         }
-        return config.getConfig().getAsJsonObject("java-agents").get(agentName).getAsString();
+        return config.getValue("java-agents").getAsJsonObject().get(agentName).getAsString();
     }
 }
