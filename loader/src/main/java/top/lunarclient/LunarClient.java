@@ -50,13 +50,15 @@ public class LunarClient {
         // give fontRender
         RenderUtils.fontRenderer = mc.fontRendererObj;
         if (checkUpdate) {
-            try {
-                checkUpdate();
-            } catch (Exception e) {
-                logger.info("Version check failed");
-                logger.catching(e);
-                // check failed
-            }
+            Thread checkUpdateThread = new Thread(() -> {
+                try {
+                    checkUpdate();
+                } catch (Exception e) {
+                    logger.info("Version check failed");
+                    logger.catching(e);
+                }
+            });
+            checkUpdateThread.start(); // start thread
         }
     }
 

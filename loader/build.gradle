@@ -47,7 +47,6 @@ dependencies {
     includeApi "com.squareup.okhttp3:okhttp:4.11.0"
     // For comparing version string
     include 'org.apache.maven:maven-artifact:3.9.3'
-
     include 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
 }
 
