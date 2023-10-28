@@ -65,6 +65,7 @@ internal object ModLoader {
             .filter { it.isRegularFile() }
             .map { JarFile(it.toFile()).also(inst::appendToSystemClassLoaderSearch) }
             .forEach(::loadMod)
+        println("[LunarCN] Added ${HookManager.hooks.size} hooks")
 
 
         // apply access for client
@@ -110,7 +111,6 @@ internal object ModLoader {
                 config.hookPackage
             )
         }
-        println("[LunarCN] Added ${HookManager.hooks.size} hooks from jar ${jar.name}")
         // entries
         initializers += config.entrypoints.map(ModLoader::instantiate)
 
