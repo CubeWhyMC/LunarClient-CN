@@ -105,6 +105,7 @@ internal object ModLoader {
         config.mixinConfigs.forEach(Mixins::addConfiguration)
         // hooks
         if (config.hookPackage != "") {
+            // empty hook-package == disable hooks
             HookManager.hooks += ClassUtils.searchClassesByAnnotation(
                 SubscribeHook::class.java,
                 Hook::class.java,
