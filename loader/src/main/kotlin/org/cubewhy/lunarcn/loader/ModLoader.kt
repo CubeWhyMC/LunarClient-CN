@@ -103,11 +103,13 @@ internal object ModLoader {
 
         config.mixinConfigs.forEach(Mixins::addConfiguration)
         // hooks
-        HookManager.hooks += ClassUtils.searchClassesByAnnotation(
-            SubscribeHook::class.java,
-            Hook::class.java,
-            config.hookPackage
-        )
+        if (config.hookPackage != "") {
+            HookManager.hooks += ClassUtils.searchClassesByAnnotation(
+                SubscribeHook::class.java,
+                Hook::class.java,
+                config.hookPackage
+            )
+        }
         println("[LunarCN] Added ${HookManager.hooks.size} hooks from jar ${jar.name}")
         // entries
         initializers += config.entrypoints.map(ModLoader::instantiate)
