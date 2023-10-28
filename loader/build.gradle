@@ -24,7 +24,7 @@ minecraft {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -48,6 +48,7 @@ dependencies {
     // For comparing version string
     include 'org.apache.maven:maven-artifact:3.9.3'
     include 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
+    include 'org.apache.logging.log4j:log4j-core:2.0-beta9'
 }
 
 shadowJar {

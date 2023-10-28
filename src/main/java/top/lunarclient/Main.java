@@ -55,6 +55,7 @@ public class Main {
                 .initValue("jre", new JsonPrimitive(""))
                 .initValue("jvm-args", new JsonPrimitive(""))
                 .initValue("args", new JsonPrimitive(""))
+                .initValue("check-update", new JsonPrimitive(true)) // AUTO-UPDATE since 1.4
                 .initValue("inject-loader", new JsonPrimitive(true))
                 .initValue("java-agents", new JsonObject());
         JavaAgents.init(); // init folder
