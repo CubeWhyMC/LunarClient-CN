@@ -12,6 +12,7 @@ import org.cubewhy.lunarcn.loader.ModLoader;
 import org.cubewhy.lunarcn.loader.api.ModInitializer;
 import org.cubewhy.lunarcn.loader.utils.GitUtils;
 import org.cubewhy.lunarcn.utils.HttpUtils;
+import org.jetbrains.annotations.NotNull;
 import top.lunarclient.files.Config;
 import top.lunarclient.ui.GuiOutdated;
 import org.cubewhy.lunarcn.utils.RenderUtils;
@@ -27,7 +28,7 @@ public class LunarClient {
     public static final File configDir = new File(System.getProperty("configDir", System.getProperty("user.home") + "/.cubewhy" + "/lunarcn")); // config folder
     public static final String CLIENT_NAME = "LunarCN";
     // API source: https://github.com/CubeWhyMC/website
-    public static final String CLIENT_API = "https://api.lunarclient.top"; // No "/" in the end
+    public static final String CLIENT_API = System.getProperty("lunarcn.api", "https://api.lunarclient.top"); // No "/" in the end
     public static final String CLIENT_VERSION = GitUtils.gitInfo.getProperty("git.build.version");
     public static final Logger logger = LogManager.getLogger(CLIENT_NAME);
     public static final Config config = new Config(new File(configDir, "config.json"));
@@ -62,7 +63,7 @@ public class LunarClient {
         }
     }
 
-    public void onCrash(CrashReport crashReportIn) {
+    public void onCrash(@NotNull CrashReport crashReportIn) {
         ModLoader.INSTANCE.getInitializers().forEach(it -> it.onCrash(crashReportIn)); // call mod's crash event
         String message = crashReportIn.getCauseStackTraceOrString();
         String file = "Not Dumped";
