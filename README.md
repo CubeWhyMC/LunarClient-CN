@@ -2,17 +2,15 @@
 
 [English/英语](README-EN.md)
 
-## 改变了什么
-
-1. 新的项目结构
-2. 支持多系统(需自己实现启动器)
-3. 友好的配置流程
-
 ## 使用
 
 1. 从[发行版](https://github.com/CubeWhyMC/LunarClient-CN/releases)下载版本
 2. 解压压缩包
 3. 双击Lunar Client CN.exe打开启动器
+
+## 支持我们的开发
+
+[点击此处捐赠](https://lunarclient.top/donate)
 
 ## 为什么要选择LunarCN
 

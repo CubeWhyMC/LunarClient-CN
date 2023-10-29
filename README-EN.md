@@ -1,20 +1,18 @@
 # LunarClient CN
 
-## What changed
-
-1. Multi-platform support
-2. Multi-version support
-3. Friendly config
-
-## Why choice LunarCN Client
-
-See [Why choice LunarCN](help/why-lunarcn.md) (Chinese)
-
 ## Using
 
 1. Download LunarCN from [Releases](https://github.com/CubeWhyMC/LunarClient-CN/releases)
 2. Do unzip
 3. Double click Lunar Client CN.exe
+
+## Donate us
+
+[Donate Project LunarCN](https://lunarclient.top/donate)
+
+## Why choice LunarCN Client
+
+See [Why choice LunarCN](help/why-lunarcn.md) (Chinese)
 
 ## Mod development
 
