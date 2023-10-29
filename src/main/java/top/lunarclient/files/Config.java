@@ -50,7 +50,7 @@ public class Config {
         if (!this.config.has(key)) {
             this.config.add(key, value);
         }
-        return this;
+        return this.save();
     }
 
     public JsonPrimitive getValue(String key) {
