@@ -1,0 +1,16 @@
+pluginManagement {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        gradlePluginPortal()
+        maven {
+            name = 'JitPack'
+            url = 'https://jitpack.io'
+        }
+    }
+    plugins {
+        id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
+    }
+}
+
+rootProject.name = 'LunarClient-CN'
+
