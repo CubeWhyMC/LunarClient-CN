@@ -1,6 +1,6 @@
 ## LunarClient CN Loader
 
-> 本仓库仅为Loader, 旧版本LunarCN已弃用, 其源代码可在其他分支中被找到
+> 本仓库仅为Loader, 旧版本LunarCN已弃用, 其源代码可在其他分支中被找到 (已被删库,我本地也没有)
 
 ## 安装
 
